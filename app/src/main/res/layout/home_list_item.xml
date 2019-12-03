@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+<androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    android:elevation="@dimen/dp_5"
+    android:layout_margin="@dimen/dp_2"
+    android:background="@color/white"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/food_img"
+            android:layout_weight="1"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:src="@drawable/food"
+            android:layout_margin="@dimen/dp_5"
+            app:civ_border_width="1dp"
+            app:civ_border_color="#FF000000"/>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_margin="@dimen/dp_10"
+            android:layout_gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:id="@+id/home_name"
+                android:textSize="@dimen/dp_12"
+                android:textColor="@color/black"
+                android:text="Hotel_name"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/dp_12"
+                android:id="@+id/id_contry"
+                android:textColor="@color/black"
+                android:text="Indian"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/dp_12"
+                android:textColor="@color/black"
+                android:id="@+id/address"
+                android:text="aurangabad road"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/id_date_time"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dp_12"
+                android:text="time"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_gravity="right"
+            android:layout_margin="@dimen/dp_10">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_gravity="center">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:background="@color/DarkGreen"
+                    android:layout_height="20dp" />
+
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ratingBar"
+                style="?android:attr/ratingBarStyleIndicator"
+                android:scaleX=".5"
+                android:rating="5"
+                android:layout_gravity="center"
+                android:scaleY=".5"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:transformPivotX="0dp"
+                android:transformPivotY="0dp"
+                android:max="5"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/discout"
+                android:visibility="gone"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dp_15"
+                android:text="Indian"/>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+
+</androidx.cardview.widget.CardView>
+
+</LinearLayout>

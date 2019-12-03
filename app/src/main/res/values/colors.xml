@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#BAEC7F</color>
+    <color name="colorPrimaryDark">#BAEC7F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="bgBottomNavigation">#fe485a</color>
+    <color name="DarkGreen">#4CAF50</color>
+
+    <color name="skyAccent">#0261e6</color>
+    <color name="white">#ffffff</color>
+
+    <color name="colorAccentlight">#3427BD47</color>
+
+
+
+    <color name="light_white">#AFDDDCDC</color>
+
+    <color name="black">#000000</color>
+    <color name="red">#ff0000</color>
+
+    <color name="yellow">#FFC703</color>
+    <color name="blue">#0890f7</color>
+    <color name="grey">#a4a4a4</color>
+
+
+
+    <color name="default_color">#02a6d8</color>
+    <color name="default_color_dark">#52a6b8</color>
+    <color name="color_red">#FF0000</color>
+    <color name="background">#e7e7e7</color>
+    <color name="calendar_number">#424A56</color>
+    <color name="pink">#FF4081</color>
+    <color name="green">#491a2d</color>
+    <color name="green_light">#8EC291</color>
+</resources>
