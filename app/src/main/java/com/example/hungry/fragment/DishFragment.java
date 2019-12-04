@@ -12,7 +12,8 @@ import com.example.hungry.R;
 
 
 public class DishFragment extends Fragment {
-
+// test comment
+    public void  test(){}
     public DishFragment() {
         // Required empty public constructor
     }
