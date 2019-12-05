@@ -32,7 +32,7 @@ import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
 
-// homefragment
+// homefragment changes
 public class HomeFragment extends Fragment {
 
     ArrayList personNames = new ArrayList<>(Arrays.asList("Person 1", "Person 2", "Person 3", "Person 4", "Person 5", "Person 6", "Person 7"));
