@@ -9,27 +9,60 @@
     android:orientation="vertical"
     tools:context=".fragment.HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:orientation="vertical">
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@drawable/border" />
+
+        <com.viewpagerindicator.CirclePageIndicator
+            android:id="@+id/indicator"
+            android:layout_width="fill_parent"
+            android:layout_height="30dp"
+            android:layout_below="@+id/pager"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="-4dp"
+            android:layout_marginTop="-44dp"
+            android:layout_marginBottom="433dp"
+            android:padding="10dip"
+            app:centered="true"
+            app:fillColor="@color/DarkGreen"
+            app:pageColor="#fff"
+            app:snap="false" />
+
+    </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:weightSum="2"
         android:orientation="horizontal">
-    <SearchView
-        android:id="@+id/simpleSearchView"
-        android:layout_width="wrap_content"
-        android:layout_weight="1"
-        android:layout_height="@dimen/dp_35"
-        android:layout_marginStart="0dp"
-        android:iconifiedByDefault="false"
-        android:queryHint="Search Here" />
+
+
+        <SearchView
+            android:id="@+id/simpleSearchView"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_weight="1.5"
+            android:iconifiedByDefault="false"
+            android:queryHint="Search here" />
 
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_home_black_24dp"/>
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_weight="0.5"
+            android:id="@+id/filter"
+            android:layout_gravity="center"
+            android:src="@drawable/filter"/>
     </LinearLayout>
+
+    <!-- TODO: Update blank fragment layout -->
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"

@@ -32,8 +32,8 @@ public class HomePage extends AppCompatActivity {
     private static int NUM_PAGES = 0;
     private ArrayList<ImageModel> imageModelArrayList;
 
-    private int[] myImageList = new int[]{R.drawable.shop, R.drawable.shop
-            ,R.drawable.shop,R.drawable.shop};
+   /* private int[] myImageList = new int[]{R.drawable.shop, R.drawable.shop
+            ,R.drawable.shop,R.drawable.shop};*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,10 +47,10 @@ public class HomePage extends AppCompatActivity {
 
         loadFragment(new HomeFragment());
 
-        imageModelArrayList = new ArrayList<>();
-        imageModelArrayList = populateList();
+        //  imageModelArrayList = new ArrayList<>();
+        //imageModelArrayList = populateList();
 
-        init();
+        //   init();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -82,7 +82,6 @@ public class HomePage extends AppCompatActivity {
     };
 
 
-
     private boolean loadFragment(Fragment fragment) {
         //switching fragment
         if (fragment != null) {
@@ -96,8 +95,7 @@ public class HomePage extends AppCompatActivity {
     }
 
 
-
-    private ArrayList<ImageModel> populateList(){
+ /*   private ArrayList<ImageModel> populateList() {
 
         ArrayList<ImageModel> list = new ArrayList<>();
 
@@ -108,8 +106,9 @@ public class HomePage extends AppCompatActivity {
         }
 
         return list;
-    }
+    }*/
 
+/*
     private void init() {
 
         mPager = (ViewPager) findViewById(R.id.pager);
@@ -167,5 +166,6 @@ public class HomePage extends AppCompatActivity {
         });
 
     }
+*/
 
-}
+    }
