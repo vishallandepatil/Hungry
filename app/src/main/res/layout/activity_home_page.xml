@@ -12,7 +12,7 @@
     <include layout="@layout/top_header"/>
 
 
-    <androidx.viewpager.widget.ViewPager
+    <!--<androidx.viewpager.widget.ViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="156dp"
@@ -36,16 +36,16 @@
         app:fillColor="#df0623"
         app:pageColor="#fff"
         app:snap="false" />
-
+-->
 
     <FrameLayout
         android:id="@+id/frame_container"
         android:layout_width="match_parent"
-        android:layout_height="518dp"
+        android:layout_height="match_parent"
         android:layout_below="@+id/indicator"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="213dp"
+        android:layout_marginTop="50dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
