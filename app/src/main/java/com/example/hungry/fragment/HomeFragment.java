@@ -3,6 +3,7 @@ package com.example.hungry.fragment;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 import com.example.hungry.HomePage;
 import com.example.hungry.R;
 import com.example.hungry.adapter.SlidingImage_Adapter;
+import com.example.hungry.hotel_detail.activity.Hotel_Detail_activity;
 import com.example.hungry.model.HomePageHotelList_Model;
 import com.example.hungry.model.ImageModel;
 import com.viewpagerindicator.CirclePageIndicator;
@@ -148,9 +150,9 @@ public class HomeFragment extends Fragment {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // Index = position;
-                    //lineDetailDialog(linesModels.get(position));
 
+                    Intent i = new Intent(getContext(), Hotel_Detail_activity.class);
+                    startActivity(i);
                 }
             });
 
