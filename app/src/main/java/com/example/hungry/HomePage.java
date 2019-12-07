@@ -2,27 +2,25 @@ package com.example.hungry;
 
 import android.os.Bundle;
 
-import com.example.hungry.adapter.SlidingImage_Adapter;
+
 import com.example.hungry.fragment.DishFragment;
 import com.example.hungry.fragment.HomeFragment;
 import com.example.hungry.fragment.OrderFragment;
 import com.example.hungry.fragment.ProfileFragment;
 import com.example.hungry.model.ImageModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.viewpagerindicator.CirclePageIndicator;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
-import android.os.Handler;
+
 import android.view.MenuItem;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class HomePage extends AppCompatActivity {
     private TextView mTextMessage;

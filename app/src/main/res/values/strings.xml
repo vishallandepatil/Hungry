@@ -5,9 +5,9 @@
     <string name="title_cart">Cart</string>
     <string name="title_profile">Profile</string>
     <string name="title_activity_home_page">HomePage</string>
-    <string name="title_home">Home</string>
+    <string name="title_home">Hotels</string>
     <string name="dish">Dish</string>
-    <string name="order">Order</string>
+    <string name="order">Orders</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

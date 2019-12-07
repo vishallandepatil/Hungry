@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#BAEC7F</color>
-    <color name="colorPrimaryDark">#BAEC7F</color>
-    <color name="colorAccent">#FF4081</color>
-    <color name="bgBottomNavigation">#fe485a</color>
+    <color name="colorPrimary">#ffffff</color>
+    <color name="colorPrimaryDark">#424242</color>
+    <color name="colorAccent">#ead95a</color>
+    <color name="colorgray">#424242</color>
+
+    <color name="bgBottomNavigation">#f1e367</color>
     <color name="DarkGreen">#4CAF50</color>
 
     <color name="skyAccent">#0261e6</color>
