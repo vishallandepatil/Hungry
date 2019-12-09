@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".hotel_detail.activity.Hotel_Detail_activity"></activity>
 
         <activity android:name=".HomePage">
             <intent-filter>

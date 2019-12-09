@@ -3,6 +3,7 @@ package com.example.hungry.fragment;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,6 +31,7 @@ import android.widget.Toast;
 
 import com.example.hungry.R;
 import com.example.hungry.adapter.SlidingImage_Adapter;
+import com.example.hungry.hotel_detail.activity.Hotel_Detail_activity;
 import com.example.hungry.model.HomePageHotelList_Model;
 import com.example.hungry.model.ImageModel;
 import com.google.android.material.bottomappbar.BottomAppBar;
@@ -40,7 +42,7 @@ import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
 
-
+// homefragment changes
 public class HomeFragment extends Fragment {
 
     ArrayList personNames = new ArrayList<>(Arrays.asList("Person 1", "Person 2", "Person 3", "Person 4", "Person 5", "Person 6", "Person 7"));
@@ -162,9 +164,9 @@ public class HomeFragment extends Fragment {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // Index = position;
-                    //lineDetailDialog(linesModels.get(position));
 
+                    Intent i = new Intent(getContext(), Hotel_Detail_activity.class);
+                    startActivity(i);
                 }
             });
 
@@ -252,23 +254,7 @@ public class HomeFragment extends Fragment {
             }
         }, 5000, 5000);
 
-        // Pager listener over indicator
-//        indicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-//            @Override
-//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-//
-//            }
-//
-//            @Override
-//            public void onPageSelected(int position) {
-//
-//            }
-//
-//            @Override
-//            public void onPageScrollStateChanged(int state) {
-//
-//            }
-//        });
+       
 
 
     }
