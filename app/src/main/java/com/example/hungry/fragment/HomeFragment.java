@@ -6,28 +6,36 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+
 import android.os.Handler;
+
+
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.hungry.HomePage;
+
 import com.example.hungry.R;
 import com.example.hungry.adapter.SlidingImage_Adapter;
 import com.example.hungry.hotel_detail.activity.Hotel_Detail_activity;
 import com.example.hungry.model.HomePageHotelList_Model;
 import com.example.hungry.model.ImageModel;
-import com.viewpagerindicator.CirclePageIndicator;
+import com.google.android.material.bottomappbar.BottomAppBar;
+
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,7 +51,7 @@ public class HomeFragment extends Fragment {
     private static ViewPager mPager;
     private static int currentPage = 0;
     private static int NUM_PAGES = 0;
-    CirclePageIndicator indicator;
+
     private ArrayList<ImageModel> imageModelArrayList;
 
     private int[] myImageList = new int[]{R.drawable.shop, R.drawable.shop
@@ -61,7 +69,10 @@ public class HomeFragment extends Fragment {
         // Required empty public constructor
     }
 
-
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.hotel_action_menu, menu);
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -72,12 +83,15 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
-
         RecyclerView rv_line = (RecyclerView) rootView.findViewById(R.id.rv_line);
 
+        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+        //setting the title
+        setHasOptionsMenu(true);
         filter = (ImageView)rootView.findViewById(R.id.filter);
         mPager = (ViewPager)rootView.findViewById(R.id.pager);
-        indicator = (CirclePageIndicator) rootView.findViewById(R.id.indicator);
+
         imageModelArrayList = new ArrayList<>();
         imageModelArrayList = populateList();
 
@@ -172,7 +186,7 @@ public class HomeFragment extends Fragment {
             public MyViewHolder(View view) {
                 super(view);
                 hotel_name = (TextView) view.findViewById(R.id.home_name);
-                contry = (TextView)view.findViewById(R.id.id_contry);
+                contry = (TextView)view.findViewById(R.id.id_type);
                 address =(TextView) view.findViewById(R.id.address);
                 time =(TextView) view.findViewById(R.id.id_date_time);
 
@@ -213,12 +227,12 @@ public class HomeFragment extends Fragment {
 
     private void PagerSlider() {
         mPager.setAdapter(new SlidingImage_Adapter(getContext(),imageModelArrayList));
-        indicator.setViewPager(mPager);
+        //indicator.setViewPager(mPager);
 
         final float density = getResources().getDisplayMetrics().density;
 
 //Set circle indicator radius
-        indicator.setRadius(5 * density);
+        //indicator.setRadius(5 * density);
 
         NUM_PAGES =imageModelArrayList.size();
 
@@ -240,25 +254,7 @@ public class HomeFragment extends Fragment {
             }
         }, 5000, 5000);
 
-        // Pager listener over indicator
-        indicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-
-            @Override
-            public void onPageSelected(int position) {
-                currentPage = position;
-
-            }
-//
-            @Override
-            public void onPageScrolled(int pos, float arg1, int arg2) {
-
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int pos) {
-
-            }
-        });
+       
 
 
     }

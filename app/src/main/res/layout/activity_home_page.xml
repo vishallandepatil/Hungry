@@ -9,43 +9,12 @@
     android:layout_height="match_parent"
     tools:context=".HomePage">
 
-    <include layout="@layout/top_header"/>
-
-
-    <!--<androidx.viewpager.widget.ViewPager
-        android:id="@+id/pager"
-        android:layout_width="match_parent"
-        android:layout_height="156dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="0dp"
-        android:background="@drawable/border" />
-
-    <com.viewpagerindicator.CirclePageIndicator
-        android:id="@+id/indicator"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/pager"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="-4dp"
-        android:layout_marginTop="-44dp"
-        android:layout_marginBottom="433dp"
-        android:padding="10dip"
-        app:centered="true"
-        app:fillColor="#df0623"
-        app:pageColor="#fff"
-        app:snap="false" />
--->
-
     <FrameLayout
         android:id="@+id/frame_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/indicator"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="50dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
@@ -55,10 +24,12 @@
         android:id="@+id/nav_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:itemIconTint="@color/colorPrimaryDark"
+        app:itemTextColor="@color/colorPrimaryDark"
 
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:background="@color/DarkGreen"
+        android:background="@color/white"
         app:menu="@menu/bottom_nav_menu" />
 
 
