@@ -1,4 +1,4 @@
-package com.example.hungry.fragment;
+package com.example.hungry.profile.fragment;
 
 
 import android.os.Bundle;

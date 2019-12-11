@@ -3,11 +3,11 @@ package com.example.hungry;
 import android.os.Bundle;
 
 
-import com.example.hungry.fragment.DishFragment;
-import com.example.hungry.fragment.HomeFragment;
-import com.example.hungry.fragment.OrderFragment;
-import com.example.hungry.fragment.ProfileFragment;
-import com.example.hungry.model.ImageModel;
+import com.example.hungry.dish.fragment.DishFragment;
+import com.example.hungry.Hotel.fragment.HotelFragment;
+import com.example.hungry.myOrder.fragment.OrderFragment;
+import com.example.hungry.profile.fragment.ProfileFragment;
+import com.example.hungry.Hotel.model.ImageModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
@@ -43,7 +43,7 @@ public class HomePage extends AppCompatActivity {
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
 
-        loadFragment(new HomeFragment());
+        loadFragment(new HotelFragment());
 
         //  imageModelArrayList = new ArrayList<>();
         //imageModelArrayList = populateList();
@@ -58,7 +58,7 @@ public class HomePage extends AppCompatActivity {
             Fragment fragment;
             switch (item.getItemId()) {
                 case R.id.home_frag:
-                    fragment = new HomeFragment();
+                    fragment = new HotelFragment();
                     loadFragment(fragment);
                     return true;
                 case R.id.dish_frag:
@@ -93,77 +93,5 @@ public class HomePage extends AppCompatActivity {
     }
 
 
- /*   private ArrayList<ImageModel> populateList() {
-
-        ArrayList<ImageModel> list = new ArrayList<>();
-
-        for(int i = 0; i < 3; i++){
-            ImageModel imageModel = new ImageModel();
-            imageModel.setImage_drawable(myImageList[i]);
-            list.add(imageModel);
-        }
-
-        return list;
-    }*/
-
-/*
-    private void init() {
-
-        mPager = (ViewPager) findViewById(R.id.pager);
-
-        mPager.setAdapter(new SlidingImage_Adapter(HomePage.this,imageModelArrayList));
-
-        CirclePageIndicator indicator = (CirclePageIndicator)
-                findViewById(R.id.indicator);
-
-        indicator.setViewPager(mPager);
-
-        final float density = getResources().getDisplayMetrics().density;
-
-//Set circle indicator radius
-        indicator.setRadius(5 * density);
-
-        NUM_PAGES =imageModelArrayList.size();
-
-        // Auto start of viewpager
-        final Handler handler = new Handler();
-        final Runnable Update = new Runnable() {
-            public void run() {
-                if (currentPage == NUM_PAGES) {
-                    currentPage = 0;
-                }
-                mPager.setCurrentItem(currentPage++, true);
-            }
-        };
-        Timer swipeTimer = new Timer();
-        swipeTimer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                handler.post(Update);
-            }
-        }, 3000, 3000);
-
-        // Pager listener over indicator
-        indicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-
-            @Override
-            public void onPageSelected(int position) {
-                currentPage = position;
-
-            }
-
-            @Override
-            public void onPageScrolled(int pos, float arg1, int arg2) {
-
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int pos) {
-
-            }
-        });
-
-    }
-*/
 
     }
