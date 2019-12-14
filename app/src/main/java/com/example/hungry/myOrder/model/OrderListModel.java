@@ -1,14 +1,13 @@
-package com.example.hungry.model;
+package com.example.hungry.myOrder.model;
 
-public class HomePageHotelList_Model {
-
+public class OrderListModel {
 
     String hotel_name;
     String contry;
     String address;
     String date_time;
 
-    public HomePageHotelList_Model(String hotel_name, String contry, String address, String date_time) {
+    public OrderListModel(String hotel_name, String contry, String address, String date_time) {
         this.hotel_name = hotel_name;
         this.contry = contry;
         this.address = address;
@@ -47,3 +46,5 @@ public class HomePageHotelList_Model {
         this.date_time = date_time;
     }
 }
+
+

@@ -1,9 +1,7 @@
-package com.example.hungry.fragment;
+package com.example.hungry.Hotel.fragment;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,21 +18,17 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.hungry.Hotel.adapter.LinesAdapter;
 import com.example.hungry.R;
-import com.example.hungry.adapter.SlidingImage_Adapter;
-import com.example.hungry.hotel_detail.activity.Hotel_Detail_activity;
-import com.example.hungry.model.HomePageHotelList_Model;
-import com.example.hungry.model.ImageModel;
-import com.google.android.material.bottomappbar.BottomAppBar;
+import com.example.hungry.Hotel.adapter.SlidingImage_Adapter;
+import com.example.hungry.hotel_detail.model.HomePageHotelList_Model;
+import com.example.hungry.Hotel.model.ImageModel;
 
 
 import java.util.ArrayList;
@@ -43,7 +37,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 // homefragment changes
-public class HomeFragment extends Fragment {
+public class HotelFragment extends Fragment {
 
     ArrayList personNames = new ArrayList<>(Arrays.asList("Person 1", "Person 2", "Person 3", "Person 4", "Person 5", "Person 6", "Person 7"));
     ArrayList<HomePageHotelList_Model> homelist = new ArrayList<>();
@@ -65,7 +59,7 @@ public class HomeFragment extends Fragment {
 
 
 
-    public HomeFragment() {
+    public HotelFragment() {
         // Required empty public constructor
     }
 
@@ -93,7 +87,7 @@ public class HomeFragment extends Fragment {
         mPager = (ViewPager)rootView.findViewById(R.id.pager);
 
         imageModelArrayList = new ArrayList<>();
-        imageModelArrayList = populateList();
+        imageModelArrayList = imageList();
 
         PagerSlider();
 
@@ -118,85 +112,13 @@ public class HomeFragment extends Fragment {
                 "11: 55 AM to 11:00 PM"));
 
 
-        LinesAdapter   linesAdapter = new LinesAdapter(homelist, getContext());
+        LinesAdapter linesAdapter = new LinesAdapter(homelist, getContext());
         rv_line.setLayoutManager(new LinearLayoutManager(getContext()));
         rv_line.setAdapter(linesAdapter);
         return rootView;
     }
 
 
-    private class LinesAdapter extends RecyclerView.Adapter<LinesAdapter.MyViewHolder> {
-        ArrayList<HomePageHotelList_Model> homelist;
-        Context context;
-
-        public LinesAdapter(ArrayList<HomePageHotelList_Model> homelist, Context context) {
-            this.homelist = homelist;
-            this.context = context;
-        }
-
-        @Override
-        public LinesAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
-            View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_list_item, parent, false);
-
-            return new LinesAdapter.MyViewHolder(itemView);
-        }
-
-        @Override
-        public int getItemCount() {
-            return homelist == null ? 0 : homelist.size();
-        }
-
-        @Override
-        public void onBindViewHolder(final LinesAdapter.MyViewHolder holder, final int position) {
-
-            HomePageHotelList_Model linesModel = homelist.get(position);
-
-            holder.hotel_name.setText(linesModel.getHotel_name());
-            holder.contry.setText(linesModel.getContry());
-            holder.address.setText(linesModel.getAddress());
-            holder.time.setText(linesModel.getDate_time());
-
-
-
-
-
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    Intent i = new Intent(getContext(), Hotel_Detail_activity.class);
-                    startActivity(i);
-                }
-            });
-
-
-
-
-
-
-        }
-
-        public class MyViewHolder extends RecyclerView.ViewHolder {
-
-            private TextView hotel_name, contry, address,time;
-            private ImageView ivEdit,add;
-            private EditText etQtyShipped,etReceivedQty,etQtyToShip,etReceive,etReason;
-
-            public MyViewHolder(View view) {
-                super(view);
-                hotel_name = (TextView) view.findViewById(R.id.home_name);
-                contry = (TextView)view.findViewById(R.id.id_type);
-                address =(TextView) view.findViewById(R.id.address);
-                time =(TextView) view.findViewById(R.id.id_date_time);
-
-
-
-
-
-            }
-        }
-    }
 
     public void filter_list() {
 
@@ -259,7 +181,7 @@ public class HomeFragment extends Fragment {
 
     }
 
-    private ArrayList<ImageModel> populateList(){
+    private ArrayList<ImageModel> imageList(){
 
         ArrayList<ImageModel> list = new ArrayList<>();
 

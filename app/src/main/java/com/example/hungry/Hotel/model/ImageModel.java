@@ -1,4 +1,4 @@
-package com.example.hungry.model;
+package com.example.hungry.Hotel.model;
 
 public class ImageModel {
     private int image_drawable;

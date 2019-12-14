@@ -1,4 +1,4 @@
-package com.example.hungry.adapter;
+package com.example.hungry.Hotel.adapter;
 
 import android.content.Context;
 import android.os.Parcelable;
@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 
-import com.example.hungry.model.ImageModel;
+import com.example.hungry.Hotel.model.ImageModel;
 import com.example.hungry.R;
 
 import java.util.ArrayList;
