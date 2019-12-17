@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#424242</color>
     <color name="colorAccent">#ead95a</color>
     <color name="colorgray">#424242</color>
+    <color name="darkgray">#424242</color>
 
     <color name="bgBottomNavigation">#f1e367</color>
     <color name="DarkGreen">#4CAF50</color>
@@ -17,7 +18,7 @@
 
     <color name="light_white">#AFDDDCDC</color>
 
-    <color name="black">#000000</color>
+    <color name="black">#424242</color>
     <color name="red">#ff0000</color>
 
     <color name="yellow">#FFC703</color>
