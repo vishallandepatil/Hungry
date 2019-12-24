@@ -16,4 +16,5 @@
     <string name="mobile_num">Enter Mobile Number</string>
     <string name="user_name">Enter Name</string>
     <string name="privacy_msg">This number will not used for any kind of promotional activity. it will kept confidential . For more please refer to our privacy policy</string>
+    <string name="send_otp">Send OTP</string>
 </resources>

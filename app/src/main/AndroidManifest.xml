@@ -9,14 +9,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".hotel_detail.activity.Hotel_Detail_activity"></activity>
-
-        <activity android:name=".HomePage">
+        <activity android:name=".LoginPage.activity.LoginPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".hotel_detail.activity.Hotel_Detail_activity" />
+        <activity android:name=".HomePage">
+          <!--  <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
         </activity>
     </application>
 
