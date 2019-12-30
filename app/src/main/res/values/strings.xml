@@ -17,4 +17,8 @@
     <string name="user_name">Enter Name</string>
     <string name="privacy_msg">This number will not used for any kind of promotional activity. it will kept confidential . For more please refer to our privacy policy</string>
     <string name="send_otp">Send OTP</string>
+    <string name="item_total_name">Item Total Amount</string>
+    <string name="delivery_fees">Delivery Fees</string>
+    <string name="tax">Tax</string>
+    <string name="discount">Discount</string>
 </resources>
