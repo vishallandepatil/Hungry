@@ -3,6 +3,7 @@ package com.example.hungry;
 import android.os.Bundle;
 
 
+import com.crashlytics.android.Crashlytics;
 import com.example.hungry.dish.fragment.DishFragment;
 import com.example.hungry.Hotel.fragment.HotelFragment;
 import com.example.hungry.myOrder.fragment.OrderFragment;
@@ -42,8 +43,8 @@ public class HomePage extends AppCompatActivity {
         mTextMessage = findViewById(R.id.message);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-
         loadFragment(new HotelFragment());
+
 
         //  imageModelArrayList = new ArrayList<>();
         //imageModelArrayList = populateList();
