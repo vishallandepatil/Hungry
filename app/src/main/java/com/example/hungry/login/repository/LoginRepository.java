@@ -1,6 +1,9 @@
 package com.example.hungry.login.repository;
 
+import com.example.hungry.login.api.City;
 import com.example.hungry.login.api.OTP;
+import com.example.hungry.login.model.CityModel;
+import com.example.hungry.login.model.CityResult;
 import com.example.hungry.login.model.Result;
 import com.example.hungry.login.model.ResultVerifyOTP;
 import com.example.hungry.retrofitsetting.RetrofitClientInstance;
@@ -72,5 +75,37 @@ public class LoginRepository {
         });
 
        return resultMutableLiveData;
+    }
+
+    public MutableLiveData<CityResult> getCity(String stateid){
+
+        City city = RetrofitClientInstance.getRetrofitInstance().create(City.class);
+        final MutableLiveData<CityResult> resultMutableLiveData = new MutableLiveData<>();
+        Call<CityResult> call = city.getCity(RetrofitClientInstance.API_KEY,stateid);
+        final CityResult result = new CityResult();
+
+        call.enqueue(new Callback<CityResult>() {
+            @Override
+            public void onResponse(Call<CityResult> call, Response<CityResult> response) {
+                CityResult data = response.body();
+                resultMutableLiveData.setValue(data);
+
+            }
+
+            @Override
+            public void onFailure(Call<CityResult> call, Throwable t) {
+                if(t.getLocalizedMessage().equalsIgnoreCase("Unable to resolve host \"hungryindia.co.in\": No address associated with hostname"))
+                { result.setMessage("Please Check Enternet Connection");
+
+                } else {
+                    result.setMessage(t.getLocalizedMessage());
+                }
+                resultMutableLiveData.setValue(result);
+
+
+            }
+        });
+        return resultMutableLiveData;
+
     }
 }

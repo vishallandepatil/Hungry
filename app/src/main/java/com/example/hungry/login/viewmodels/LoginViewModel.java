@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.hungry.R;
+import com.example.hungry.login.model.CityModel;
+import com.example.hungry.login.model.CityResult;
 import com.example.hungry.login.model.Result;
 import com.example.hungry.login.model.ResultVerifyOTP;
 import com.example.hungry.login.repository.LoginRepository;
@@ -28,6 +30,8 @@ public class LoginViewModel extends ViewModel {
 
     public MutableLiveData<String> mobileNumber = new MutableLiveData<>();
     public MutableLiveData<String> otp = new MutableLiveData<>();
+    public MutableLiveData<String> name = new MutableLiveData<>();
+
     public MutableLiveData<Result> resultMutableLiveData = new MutableLiveData<>();
     public MutableLiveData<ResultVerifyOTP> resultVerifyOTPMutableLiveData = new MutableLiveData<>();
 
@@ -36,11 +40,16 @@ public class LoginViewModel extends ViewModel {
     public MutableLiveData<Boolean> isEditOpt = new MutableLiveData<>();
     public MutableLiveData<Boolean> isErrorShown = new MutableLiveData<>();
     public MutableLiveData<Integer> nextfragment = new MutableLiveData<>();
+    public MutableLiveData<CityResult> cityResultMutableLiveData = new MutableLiveData<>();
+    public MutableLiveData<Integer> selectedIndex = new MutableLiveData<>();
+    public MutableLiveData<String> entries = new MutableLiveData<>();
 
 
 
 
-     Result result = new Result();
+
+
+    Result result = new Result();
 
 
     public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -68,6 +77,7 @@ public class LoginViewModel extends ViewModel {
             LoginRepository loginRepository = new LoginRepository();
             if ((((Button)view).getText().toString() == view.getContext().getResources().getString(R.string.send_otp))) {
                 isloading.setValue(true);
+                loadCities();
                 loginRepository.sendOTP(mobileNumber.getValue()).observeForever(new Observer<Result>() {
                     @Override
                     public void onChanged(Result result) {
@@ -147,5 +157,22 @@ public class LoginViewModel extends ViewModel {
     };
     public void showTime() {
         countDownTimer.start();
+    }
+
+    private void loadCities(){
+        LoginRepository login =new LoginRepository();
+        login.getCity("1").observeForever(new Observer<CityResult>() {
+            @Override
+            public void onChanged(CityResult cityResult) {
+                cityResultMutableLiveData.setValue(cityResult);
+                if (result.status == 200) {
+
+                } else {
+                }
+
+            }
+        });
+
+
     }
 }

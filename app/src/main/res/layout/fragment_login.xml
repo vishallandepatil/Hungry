@@ -110,6 +110,40 @@
 
                         android:textColorHint="@color/grey"
                         android:textSize="14sp" />
+                    <EditText
+                        android:id="@+id/name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/border"
+                        android:drawableLeft="@drawable/ic_person_black_24dp"
+                        android:drawablePadding="8dp"
+                        android:gravity="center_vertical"
+                        android:hint="Enter Your Name"
+                        android:inputType="number"
+                        android:padding="10dp"
+                        android:visibility="visible"
+                        android:maxLength="6"
+                        android:singleLine="true"
+                        android:text="@={LoginViewModel.name}"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textColorHint="@color/grey"
+                        android:textSize="14sp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+
+                        android:background="@drawable/border">
+
+                        <Spinner
+                            android:id="@+id/city"
+                            android:layout_width="match_parent"
+                            android:layout_height="43dp"
+                            android:padding="5dp" />
+
+
+                    </LinearLayout>
 
                     <TextView
                         android:text="@{LoginViewModel.resultMutableLiveData.message}"
