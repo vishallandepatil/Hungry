@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:layout_width="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:background="@color/white"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-    <de.hdodenhof.circleimageview.CircleImageView
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="LoginViewModel"
+            type="com.example.hungry.login.viewmodels.LoginViewModel" />
+
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_above="@id/cvLogin"
@@ -14,114 +26,43 @@
 
 
             android:src="@drawable/ic_login" />
-    <androidx.cardview.widget.CardView
+
+        <androidx.cardview.widget.CardView
             android:id="@+id/cvLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:elevation="10dp"
             android:layout_margin="20dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/bg"
-            >
+            android:elevation="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="20dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="20dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
 
-                    android:padding="4dp"
-                    android:textSize="25dp"
-                    android:text="LOGIN"
                     android:fontFamily="@font/ptserif_bold"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textAllCaps="true"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tvLoginChange"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginBottom="16dp"
                     android:padding="4dp"
-                    android:visibility="gone"
-                    android:text="Login with OTP"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="@color/DarkGreen"
+                    android:text="LOGIN"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="25dp"
                     android:textStyle="bold" />
 
-                <LinearLayout
-                    android:id="@+id/llLoginUserName"
-                    android:layout_width="match_parent"
-                    android:visibility="visible"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-
-                    <EditText
-                        android:id="@+id/etUserName"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:background="@drawable/border"
-                        android:drawableLeft="@drawable/ic_smartphone_black_24dp"
-                        android:drawablePadding="8dp"
-                        android:gravity="center_vertical"
-                        android:hint="User Name"
-                        android:padding="10dp"
-                        android:singleLine="true"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/grey"
-                        android:textSize="14sp" />
-
-                    <EditText
-                        android:id="@+id/etPassword"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:background="@drawable/border"
-                        android:drawableLeft="@drawable/ic_lock_open_black_24dp"
-                        android:drawablePadding="8dp"
-                        android:gravity="center_vertical"
-                        android:hint="Password"
-                        android:inputType="textPassword"
-                        android:padding="10dp"
-                        android:singleLine="true"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textColorHint="@color/grey"
-                        android:textSize="14sp" />
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-
-                        android:background="@drawable/border">
-
-                        <Spinner
-                            android:id="@+id/spAccountType"
-                            android:layout_width="match_parent"
-                            android:layout_height="45dp"
-                            android:padding="5dp" />
-
-
-                    </LinearLayout>
-
-                    </LinearLayout>
 
                 <LinearLayout
-                    android:visibility="gone"
                     android:id="@+id/llLoginOtp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="visible">
 
                     <EditText
                         android:id="@+id/etMobileNumber"
@@ -134,12 +75,21 @@
                         android:gravity="center_vertical"
                         android:hint="Mobile Number"
                         android:padding="10dp"
+                        android:text="@={LoginViewModel.mobileNumber}"
                         android:singleLine="true"
+                        android:inputType="number"
+                        android:maxLength="10"
                         android:textColor="@color/black"
+                        android:focusable="@{LoginViewModel.resultMutableLiveData.status==200?false:true}"
+                        android:onTextChanged="@{LoginViewModel::onTextChanged}"
                         android:textColorHint="@color/grey"
                         android:textSize="14sp" />
+                    />
+
 
                     <EditText
+                        android:onTextChanged="@{LoginViewModel::onOTPChanged}"
+
                         android:id="@+id/etOtp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -149,44 +99,78 @@
                         android:drawablePadding="8dp"
                         android:gravity="center_vertical"
                         android:hint="Enter OTP"
-                        android:inputType="textPassword"
+                        android:inputType="number"
                         android:padding="10dp"
+                        android:visibility="@{LoginViewModel.resultMutableLiveData.status==200 ? View.VISIBLE : View.GONE}"
+                        android:maxLength="6"
                         android:singleLine="true"
+                        android:text="@={LoginViewModel.otp}"
                         android:textColor="@color/colorPrimaryDark"
+                        android:enabled="@{LoginViewModel.isEditOpt}"
+
                         android:textColorHint="@color/grey"
                         android:textSize="14sp" />
 
-
-                        <TextView
-                            android:drawableLeft="@drawable/ic_refresh_black_24dp"
-                            android:id="@+id/tvResendOtp"
-                            android:layout_width="wrap_content"
-                            android:textSize="20dp"
-                            android:scaleX="0.8"
-                            android:drawablePadding="4dp"
-                            android:scaleY="0.8"
-                            android:layout_height="wrap_content"
-                            android:text="Resend Otp" />
+                    <TextView
+                        android:text="@{LoginViewModel.resultMutableLiveData.message}"
+                        android:visibility="@{LoginViewModel.isErrorShown ? View.VISIBLE : View.GONE}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="1dp"
+                        android:textColor="@color/red"
+                        android:layout_marginLeft="5dp"
 
 
+                        />
+                    <TextView
+                        android:id="@+id/tvResendOtp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/ic_refresh_black_24dp"
+                        android:drawablePadding="4dp"
+                        android:scaleX="0.8"
+                        android:scaleY="0.8"
+                        android:text="Resend Otp"
+                        android:textSize="20dp"
+                        android:visibility="@{LoginViewModel.timeText!=null ? View.GONE : View.VISIBLE}"
+                        />
 
+                    <TextView
+                        android:id="@+id/tvseconds"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:scaleX="0.8"
+                        android:scaleY="0.8"
+                        android:visibility="@{LoginViewModel.resultMutableLiveData.status==200 ? View.VISIBLE : View.GONE}"
+                        android:text="@{LoginViewModel.timeText}"
+                        android:textSize="20dp"
+                        />
 
+                    <ProgressBar
+                        android:id="@+id/ProgressBar"
+                        style="?android:attr/spinnerMode"
+                        android:layout_width="34dp"
+                        android:layout_height="29dp"
+                        android:layout_gravity="center"
+                        android:visibility="@{LoginViewModel.isloading?View.VISIBLE : View.GONE}" />
                 </LinearLayout>
 
                 <Button
                     android:id="@+id/btnLogin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="40dp"
-                    android:fontFamily="@font/ptserif_bold"
-                    android:paddingRight="40dp"
-                    android:layout_marginTop="40dp"
                     android:layout_centerHorizontal="true"
                     android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="40dp"
                     android:background="@drawable/ic_rounded_corner"
+                    android:fontFamily="@font/ptserif_bold"
+                    android:paddingLeft="40dp"
+                    android:paddingRight="40dp"
+                    android:onClick="@{(v) -> LoginViewModel.onClick(v)}"
+                    android:text='@{LoginViewModel.resultMutableLiveData.status==200 ? @string/verify_otp : @string/send_otp}'
+                    android:clickable="@{LoginViewModel.isloading?false:true}"
                     android:textColor="@color/white"
-                    android:textSize="15dp"
-                    android:text="Login" />
+                    android:textSize="15dp" />
 
             </LinearLayout>
 
@@ -194,17 +178,18 @@
         </androidx.cardview.widget.CardView>
 
 
-
         <TextView
             android:id="@+id/tvPrivacyPolicyLink"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/cvLogin"
-            android:gravity="center_horizontal"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:textSize="10dp"
-            android:text="This number will not used for any kind of promotional activity, it will kept confidential. For more please refer to our privacy policy" />
+            android:gravity="center_horizontal"
+            android:text="This number will not used for any kind of promotional activity, it will kept confidential. For more please refer to our privacy policy"
+
+            android:textSize="10dp" />
 
     </LinearLayout>
 
+</layout>

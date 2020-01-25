@@ -1,61 +1,10 @@
 package com.example.hungry.login.model;
 
 public class User {
-    public static String ACCOUNT_TYPE = "Account Type";
-    public static String DELIVERY_BOY = "Delivery Boy";
-    public static String HOTEL_ADMIN = "Hotel";
-    private int id;
-    private String name;
-    private String password;
-    private String accountType;
-    String mobileNumber;
-    String otp;
 
-    public int getId() {
-        return id;
-    }
+    int CM_ID,CM_MA_ID,COUNTRY_COUNTRY_MASTRE_ID,STATE_MASTER_ID,CITY_MASTER_ID;
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    String CM_FIRST_NAME,CM_LAST_NAME,CM_MOBILE,CM_EMAIL,CM_IPADDRESS,CM_PASSWORD,CM_IS_MOBILE_VERIFIED,CM_IS_AGREE,CM_ADDRESS,CM_ACTIVE,CM_IS_EMAIL_VERIFIEDCM_LOGIN_ATTEMPT_NO,CM_DOB,CM_GENDER,CM_REG_SOURCE,CM_PRO_IMG,CM_CREATED_AT,CM_UPDATED_AT,CM_TOKEN_SATUS_DATE,CM_TOKEN_SATU;
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getAccountType() {
-        return accountType;
-    }
-
-    public void setAccountType(String accountType) {
-        this.accountType = accountType;
-    }
-
-    public String getMobileNumber() {
-        return mobileNumber;
-    }
-
-    public void setMobileNumber(String mobileNumber) {
-        this.mobileNumber = mobileNumber;
-    }
-
-    public String getOtp() {
-        return otp;
-    }
-
-    public void setOtp(String otp) {
-        this.otp = otp;
-    }
 }

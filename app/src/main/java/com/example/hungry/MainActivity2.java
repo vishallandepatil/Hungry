@@ -79,6 +79,7 @@ public class MainActivity2 extends AppCompatActivity {
         }
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         fragmentTransaction.commit();
+
     }
 
 
@@ -88,15 +89,6 @@ public class MainActivity2 extends AppCompatActivity {
 
 
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-    }
 
 
 }

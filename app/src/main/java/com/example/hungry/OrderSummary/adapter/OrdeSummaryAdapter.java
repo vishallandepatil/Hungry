@@ -12,7 +12,6 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hungry.R;
-import com.example.hungry.hotel_detail.activity.Hotel_Detail_activity;
 import com.example.hungry.OrderSummary.model.Order_summary_Model;
 import com.example.hungry.hotel_detail.model.HomePageHotelList_Model;
 

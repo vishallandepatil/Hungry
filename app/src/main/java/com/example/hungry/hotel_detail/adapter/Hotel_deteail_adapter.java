@@ -6,11 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.hungry.OrderSummary.activity.OrderSummary;
+import com.example.hungry.OrderSummary.OrderSummary;
 import com.example.hungry.R;
 import java.util.ArrayList;
 
@@ -42,8 +41,8 @@ public class Hotel_deteail_adapter extends RecyclerView.Adapter<Hotel_deteail_ad
             @Override
             public void onClick(View view) {
                 // open another activity on item click
-                Intent intent = new Intent(context, OrderSummary.class);
-                context.startActivity(intent); // start Intent
+                //Intent intent = new Intent(context, OrderSummary.class);
+                //context.startActivity(intent); // start Intent
             }
         });
     }
