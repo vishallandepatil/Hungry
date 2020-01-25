@@ -101,7 +101,7 @@
                         android:hint="Enter OTP"
                         android:inputType="number"
                         android:padding="10dp"
-                        android:visibility="@{LoginViewModel.resultMutableLiveData.status==200 ? View.VISIBLE : View.GONE}"
+                        android:visibility="@{LoginViewModel.isOTPVisible ? View.VISIBLE : View.GONE}"
                         android:maxLength="6"
                         android:singleLine="true"
                         android:text="@={LoginViewModel.otp}"
@@ -111,6 +111,7 @@
                         android:textColorHint="@color/grey"
                         android:textSize="14sp" />
                     <EditText
+
                         android:id="@+id/name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -120,9 +121,9 @@
                         android:drawablePadding="8dp"
                         android:gravity="center_vertical"
                         android:hint="Enter Your Name"
-                        android:inputType="number"
+                        android:inputType="text"
                         android:padding="10dp"
-                        android:visibility="visible"
+                        android:visibility="@{LoginViewModel.isRegistration?View.VISIBLE:View.GONE}"
                         android:maxLength="6"
                         android:singleLine="true"
                         android:text="@={LoginViewModel.name}"
@@ -130,21 +131,39 @@
                         android:textColorHint="@color/grey"
                         android:textSize="14sp" />
                     <LinearLayout
+                        android:visibility="@{LoginViewModel.isRegistration?View.VISIBLE:View.GONE}"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-
                         android:background="@drawable/border">
 
                         <Spinner
-                            android:id="@+id/city"
+                            android:id="@+id/gender"
                             android:layout_width="match_parent"
+                            android:entries="@array/genders"
+                            android:onItemSelected="@{(parent,view,pos,id)->LoginViewModel.onSelectGender(parent,view,pos,id)}"
+
                             android:layout_height="43dp"
                             android:padding="5dp" />
 
 
                     </LinearLayout>
+                    <LinearLayout
+                        android:visibility="@{LoginViewModel.isRegistration?View.VISIBLE:View.GONE}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/border">
 
+                        <Spinner
+                            android:id="@+id/city"
+                            android:layout_width="match_parent"
+                            android:onItemSelected="@{(parent,view,pos,id)->LoginViewModel.onSelectCity(parent,view,pos,id)}"
+                            android:layout_height="43dp"
+                            android:padding="5dp" />
+
+
+                    </LinearLayout>
                     <TextView
                         android:text="@{LoginViewModel.resultMutableLiveData.message}"
                         android:visibility="@{LoginViewModel.isErrorShown ? View.VISIBLE : View.GONE}"
@@ -166,7 +185,7 @@
                         android:scaleY="0.8"
                         android:text="Resend Otp"
                         android:textSize="20dp"
-                        android:visibility="@{LoginViewModel.timeText!=null ? View.GONE : View.VISIBLE}"
+                        android:visibility="@{LoginViewModel.timeText!=null || !LoginViewModel.isOTPVisible ? View.GONE : View.VISIBLE}"
                         />
 
                     <TextView
@@ -201,7 +220,8 @@
                     android:paddingLeft="40dp"
                     android:paddingRight="40dp"
                     android:onClick="@{(v) -> LoginViewModel.onClick(v)}"
-                    android:text='@{LoginViewModel.resultMutableLiveData.status==200 ? @string/verify_otp : @string/send_otp}'
+                    android:text='@{LoginViewModel.loginbtntext}'
+
                     android:clickable="@{LoginViewModel.isloading?false:true}"
                     android:textColor="@color/white"
                     android:textSize="15dp" />

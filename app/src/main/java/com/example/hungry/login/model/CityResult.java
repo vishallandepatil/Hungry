@@ -2,6 +2,8 @@ package com.example.hungry.login.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+
 public class CityResult {
     @SerializedName("message")
     public String message;
@@ -10,7 +12,7 @@ public class CityResult {
     @SerializedName("count")
     public String count;
     @SerializedName("result")
-    public CityModel result;
+    public ArrayList<CityModel> result;
 
     public String getMessage() {
         return message;
@@ -36,7 +38,7 @@ public class CityResult {
         this.count = count;
     }
 
-    public void setResult(CityModel result) {
+    public void setResult(ArrayList<CityModel> result) {
         this.result = result;
     }
 
@@ -44,7 +46,7 @@ public class CityResult {
         this.type = type;
     }
 
-    public CityModel getResult() {
+    public ArrayList<CityModel> getResult() {
         return result;
     }
 

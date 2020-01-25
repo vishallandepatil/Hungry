@@ -1,9 +1,11 @@
 package com.example.hungry;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.hungry.app.PrefManager;
 import com.example.hungry.login.LoginFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -32,7 +34,13 @@ public class MainActivity2 extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
         setupFirebase();
         setupToolbar();
-        loadFragment(new LoginFragment(), "LOGIN", false, "LOGIN");
+        if(!new PrefManager(this).islogin()) {
+            loadFragment(new LoginFragment(), "LOGIN", false, "LOGIN");
+        } else {
+            Intent intent = new Intent(this, HomePage.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
     private void setupToolbar() {

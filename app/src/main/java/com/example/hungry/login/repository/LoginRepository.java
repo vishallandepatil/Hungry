@@ -2,10 +2,12 @@ package com.example.hungry.login.repository;
 
 import com.example.hungry.login.api.City;
 import com.example.hungry.login.api.OTP;
+import com.example.hungry.login.api.Registration;
 import com.example.hungry.login.model.CityModel;
 import com.example.hungry.login.model.CityResult;
 import com.example.hungry.login.model.Result;
 import com.example.hungry.login.model.ResultVerifyOTP;
+import com.example.hungry.login.model.User;
 import com.example.hungry.retrofitsetting.RetrofitClientInstance;
 
 import androidx.lifecycle.MutableLiveData;
@@ -108,4 +110,37 @@ public class LoginRepository {
         return resultMutableLiveData;
 
     }
+
+    public MutableLiveData<ResultVerifyOTP> registerUser(User user){
+
+        Registration city = RetrofitClientInstance.getRetrofitInstance().create(Registration.class);
+        final MutableLiveData<ResultVerifyOTP> resultMutableLiveData = new MutableLiveData<>();
+        Call<ResultVerifyOTP> call = city.registerUser(RetrofitClientInstance.API_KEY,user.getCM_MOBILE(),user.getCM_FIRST_NAME(),user.getCM_LAST_NAME(),user.getCM_EMAIL(),user.getSTATE_MASTER_ID()+"",""+user.getCITY_MASTER_ID(),user.getCM_ADDRESS(),user.getCM_GENDER(),"A");
+        final ResultVerifyOTP result = new ResultVerifyOTP();
+
+        call.enqueue(new Callback<ResultVerifyOTP>() {
+            @Override
+            public void onResponse(Call<ResultVerifyOTP> call, Response<ResultVerifyOTP> response) {
+                ResultVerifyOTP data = response.body();
+                resultMutableLiveData.setValue(data);
+
+            }
+
+            @Override
+            public void onFailure(Call<ResultVerifyOTP> call, Throwable t) {
+                if(t.getLocalizedMessage().equalsIgnoreCase("Unable to resolve host \"hungryindia.co.in\": No address associated with hostname"))
+                { result.setMessage("Please Check Enternet Connection");
+
+                } else {
+                    result.setMessage(t.getLocalizedMessage());
+                }
+                resultMutableLiveData.setValue(result);
+
+
+            }
+        });
+        return resultMutableLiveData;
+
+    }
+
 }

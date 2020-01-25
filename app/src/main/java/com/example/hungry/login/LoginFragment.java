@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,10 +16,15 @@ import android.widget.Toast;
 import com.example.hungry.HomePage;
 import com.example.hungry.R;
 import com.example.hungry.databinding.FragmentLoginBinding;
+import com.example.hungry.login.adapter.CustomAdapter;
+import com.example.hungry.login.api.City;
+import com.example.hungry.login.model.CityModel;
+import com.example.hungry.login.model.CityResult;
 import com.example.hungry.login.model.Result;
 import com.example.hungry.login.viewmodels.LoginViewModel;
 import com.example.hungry.retrofitsetting.RetrofitClientInstance;
 
+import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -83,6 +89,19 @@ public class LoginFragment extends Fragment {
 
                 }
 
+            }
+        });
+        loginViewModel.loadCities();
+        loginViewModel.cityResultMutableLiveData.observeForever(new Observer<CityResult>() {
+            @Override
+            public void onChanged(CityResult cityResult) {
+                if(cityResult.status==200){
+                    CityModel city = new CityModel();
+                    city.setCity_name("Select City");
+                    cityResult.result.add(0,city);
+                    CustomAdapter adaptercity=new CustomAdapter(getActivity(),R.layout.spinner_item,cityResult.result);
+                    binding.city.setAdapter(adaptercity);
+                }
             }
         });
 

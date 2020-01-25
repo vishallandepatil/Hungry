@@ -17,6 +17,8 @@
     <string name="user_name">Enter Name</string>
     <string name="privacy_msg">This number will not used for any kind of promotional activity. it will kept confidential . For more please refer to our privacy policy</string>
     <string name="send_otp">Send OTP</string>
+    <string name="register">Register</string>
+
     <string name="verify_otp">Verify OTP</string>
 
 
@@ -26,4 +28,10 @@
     <string name="delivery_fees">Delivery Fees</string>
     <string name="tax">Tax</string>
     <string name="discount">Discount</string>
+
+    <string-array name="genders">
+        <item>Select Gender</item>
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
 </resources>

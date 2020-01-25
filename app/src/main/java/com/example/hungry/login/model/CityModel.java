@@ -4,6 +4,46 @@ public class CityModel {
     String citymaster_id;
     String city_name;
 
+    public void setCitymaster_id(String citymaster_id) {
+        this.citymaster_id = citymaster_id;
+    }
+
+    public void setCity_name(String city_name) {
+        this.city_name = city_name;
+    }
+
+    public void setStatemaster_id(String statemaster_id) {
+        this.statemaster_id = statemaster_id;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setCity_name_slug(String city_name_slug) {
+        this.city_name_slug = city_name_slug;
+    }
+
+    public void setCountrymaster_id(String countrymaster_id) {
+        this.countrymaster_id = countrymaster_id;
+    }
+
+    public void setIs_used(String is_used) {
+        this.is_used = is_used;
+    }
+
+    public void setGoogle_place_id(String google_place_id) {
+        this.google_place_id = google_place_id;
+    }
+
     public String getCitymaster_id() {
         return citymaster_id;
     }
