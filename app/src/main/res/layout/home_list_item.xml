@@ -40,7 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dp_2"
-                android:text="Hotel Prasad"
+                android:hint="Hotel Prasad"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="@dimen/dp_12"
                 android:textStyle="bold" />
@@ -50,7 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dp_2"
-                android:text="Indiam"
+                android:hint="Indiam"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="@dimen/dp_12" />
 
@@ -61,7 +61,7 @@
                 android:layout_marginBottom="@dimen/dp_2"
                 android:ellipsize="end"
                 android:maxLength="20"
-                android:text="Aurangabad Roaddncncnxmncmnxmnc"
+                android:hint="Aurangabad Roaddncncnxmncmnxmnc"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="@dimen/dp_12" />
 
@@ -69,6 +69,7 @@
         </LinearLayout>
 
         <ImageView
+            android:id="@+id/ivVeg"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_alignParentRight="true"

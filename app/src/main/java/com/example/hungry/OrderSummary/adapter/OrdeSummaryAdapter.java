@@ -1,7 +1,6 @@
 package com.example.hungry.OrderSummary.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hungry.R;
 import com.example.hungry.OrderSummary.model.Order_summary_Model;
-import com.example.hungry.hotel_detail.model.HomePageHotelList_Model;
 
 import java.util.ArrayList;
 

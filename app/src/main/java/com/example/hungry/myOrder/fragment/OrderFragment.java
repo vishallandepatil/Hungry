@@ -14,9 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.hungry.Hotel.adapter.LinesAdapter;
 import com.example.hungry.R;
-import com.example.hungry.hotel_detail.model.HomePageHotelList_Model;
 import com.example.hungry.myOrder.adapter.MyOrderAdapter;
 import com.example.hungry.myOrder.model.OrderListModel;
 

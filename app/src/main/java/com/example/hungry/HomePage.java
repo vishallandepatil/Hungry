@@ -3,12 +3,11 @@ package com.example.hungry;
 import android.os.Bundle;
 
 
-import com.crashlytics.android.Crashlytics;
 import com.example.hungry.dish.fragment.DishFragment;
-import com.example.hungry.Hotel.fragment.HotelFragment;
+import com.example.hungry.hotel.fragment.HotelFragment;
 import com.example.hungry.myOrder.fragment.OrderFragment;
 import com.example.hungry.profile.fragment.ProfileFragment;
-import com.example.hungry.Hotel.model.ImageModel;
+import com.example.hungry.hotel.model.ImageModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
@@ -61,6 +60,7 @@ public class HomePage extends AppCompatActivity {
                 case R.id.home_frag:
                     fragment = new HotelFragment();
                     loadFragment(fragment);
+                    
                     return true;
                 case R.id.dish_frag:
                     fragment = new DishFragment();

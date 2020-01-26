@@ -1,4 +1,4 @@
-package com.example.hungry.Hotel.adapter;
+package com.example.hungry.hotel.adapter;
 
 import android.content.Context;
 import android.os.Parcelable;
@@ -9,8 +9,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 
-import com.example.hungry.Hotel.model.ImageModel;
+import com.bumptech.glide.Glide;
+import com.example.hungry.hotel.model.ImageModel;
 import com.example.hungry.R;
+import com.example.hungry.hotel.model.SliderResult;
 
 import java.util.ArrayList;
 
@@ -48,9 +50,11 @@ public class SlidingImage_Adapter extends PagerAdapter {
         assert imageLayout != null;
         final ImageView imageView = (ImageView) imageLayout
                 .findViewById(R.id.image);
+        Glide.with(context)
+                .load(imageModelArrayList.get(position).getIMG_PATH())
+                .into(imageView);
 
 
-        imageView.setImageResource(imageModelArrayList.get(position).getImage_drawable());
 
         view.addView(imageLayout, 0);
 

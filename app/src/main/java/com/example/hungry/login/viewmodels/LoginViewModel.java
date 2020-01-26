@@ -233,7 +233,7 @@ public class LoginViewModel extends ViewModel {
 
     public void loadCities(){
         LoginRepository login =new LoginRepository();
-        cityResultMutableLiveData=login.getCity("1");
+        cityResultMutableLiveData=login.getCity("19");
 
 
     }

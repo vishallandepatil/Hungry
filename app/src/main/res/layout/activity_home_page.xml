@@ -24,9 +24,8 @@
         android:id="@+id/nav_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:itemIconTint="@color/colorPrimaryDark"
-        app:itemTextColor="@color/colorPrimaryDark"
-
+        app:itemIconTint="@color/colorselector"
+        app:itemTextColor="@color/colorselector"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:background="@color/white"

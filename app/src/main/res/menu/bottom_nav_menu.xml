@@ -9,6 +9,7 @@
 
     <item
         android:id="@+id/dish_frag"
+        android:visible="false"
         android:icon="@drawable/ic_restaurant_menu_black_24dp"
         android:iconTint="@color/colorPrimaryDark"
         android:title="@string/dish" />
