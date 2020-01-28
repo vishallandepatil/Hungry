@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import com.example.hungry.HomePage;
 import com.example.hungry.R;
 import com.example.hungry.databinding.FragmentHotelDetailBinding;
+import com.example.hungry.hotel.CartListner;
 import com.example.hungry.hotel.model.Menu;
 import com.example.hungry.hotel.model.MenuResult;
 import com.example.hungry.hotel.viewmodels.HotelDetailViewModel;
@@ -69,8 +70,17 @@ public class HotelDetail extends Fragment {
             public void onChanged(MenuResult menuResult) {
                 MenuAdapter hotel_deteail_adapter = new MenuAdapter((HomePage) getActivity(), menuResult.result);
                 binding.setMenuAdapter(hotel_deteail_adapter);
+                hotel_deteail_adapter.setListner(new CartListner() {
+                    @Override
+                    public void onChange() {
+                        String size = ((HomePage) getActivity()).cart.size()+"";
+                        binding.ibcartCount.setText(size+"");
+                    }
+                });
             }
         });
+        String size = ((HomePage) getActivity()).cart.size()+"";
+        binding.ibcartCount.setText(size+"");
         return  binding.getRoot();
     }
 

@@ -14,6 +14,7 @@ import com.example.hungry.HomePage;
 import com.example.hungry.R;
 import com.example.hungry.databinding.HotelDetailListBinding;
 import com.example.hungry.generated.callback.OnClickListener;
+import com.example.hungry.hotel.CartListner;
 import com.example.hungry.hotel.model.Menu;
 
 import java.util.ArrayList;
@@ -22,6 +23,12 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MyViewHolder> 
 
     ArrayList<Menu> menus;
     HomePage context;
+
+    public void setListner(CartListner listner) {
+        this.listner = listner;
+    }
+
+    CartListner listner;
 
 
     public MenuAdapter(HomePage context, ArrayList<Menu> menus) {
@@ -70,6 +77,9 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MyViewHolder> 
                         dataModel.isAddedToCart = true;
                         context.cart.add(dataModel);
                         notifyDataSetChanged();
+                        if(listner!=null){
+                            listner.onChange();
+                        }
                     }
 
                 }
