@@ -47,6 +47,7 @@ public class HotelFragment extends Fragment {
     private   String veg_only=null, name=null,  ratting=null,  limit=null,  satrt=null;
 
     String[] listItems = {"Rating","Veg only","Nonveg only","None"};
+    int checkedItem = 0;
     User user;
 
     FragmentHomeBinding binding;
@@ -141,7 +142,7 @@ public class HotelFragment extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Choose item");
 
-        int checkedItem = 0; //this will checked the item when user open the dialog
+         //this will checked the item when user open the dialog
         builder.setSingleChoiceItems(listItems, checkedItem, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -149,7 +150,7 @@ public class HotelFragment extends Fragment {
                 //Toast.makeText(getContext(), "Position: " + which + " Value: " + listItems[which], Toast.LENGTH_LONG).show();
                 veg_only=null;
                 ratting= null;
-
+                checkedItem=which;
                 switch (which) {
                     case 0:
                         ratting = "asc";

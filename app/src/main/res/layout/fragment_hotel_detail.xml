@@ -4,10 +4,13 @@
 
     <data>
         <import type="android.view.View"/>
+        <import type="androidx.recyclerview.widget.GridLayoutManager"/>
         <variable
-            name="homeViewModel"
+            name="HotelDetails"
             type="com.example.hungry.hotel.viewmodels.HotelDetailViewModel" />
-
+        <variable
+            name="menuAdapter"
+            type="com.example.hungry.hotel.adapter.MenuAdapter" />
 
     </data>
     <RelativeLayout
@@ -20,7 +23,85 @@
         android:orientation="vertical">
 
 
-        <include layout="@layout/top_header"/>
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:titleTextColor="@color/colorPrimaryDark"
+            android:layout_alignParentStart="true"
+            app:title="Hungry"
+            android:elevation="@dimen/dp_5"
+            app:navigationIcon='@drawable/ic_menu_black_24dp'
+            android:background="@color/colorPrimary" >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:background="@color/white"
+                    android:layout_width="0dp"
+                    android:id="@+id/toolbartitle"
+                    style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:text="Hungry"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="16dp"/>
+                <!--android:text="Insta Greetings"-->
+
+                <RelativeLayout
+
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:gravity="center_vertical">
+                    <ImageButton
+                        android:id="@+id/ibcart"
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"
+                        android:background="@null"
+                        android:src="@drawable/ic_shopping_cart_black_24dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:id="@+id/ibcartCount"
+                        android:textSize="10dp"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:background="@drawable/txt_round_shape"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginRight="5dp"
+                        android:visibility="visible"/>
+                </RelativeLayout>
+                <ImageButton
+                    android:id="@+id/iconshare"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+                    android:background="@null"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_share_black_24dp" />
+                <ImageButton
+                    android:id="@+id/login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_gravity="center"
+                    android:background="@null"
+                    android:padding="10dp"
+                    android:visibility="gone"
+                    android:src="@drawable/loginmenu" />
+            </LinearLayout>
+
+
+        </androidx.appcompat.widget.Toolbar>
 
 
         <androidx.cardview.widget.CardView
@@ -50,26 +131,26 @@
                         android:textStyle="bold"
                         android:textSize="@dimen/dp_14"
                         android:textColor="@color/DarkGreen"
-                        android:text="Hotel prasad " />
+                        android:text="@{HotelDetails.hotelModel.name}" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/DarkGreen"
                         android:textSize="@dimen/dp_12"
-                        android:text="Indian"/>
+                        android:text="@{HotelDetails.hotelModel.mealType}"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
                         android:textSize="@dimen/dp_12"
-                        android:text="Aurangabad Road"/>
+                        android:text="@{HotelDetails.hotelModel.address}"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
                         android:textSize="@dimen/dp_12"
-                        android:text="Delivery in 45 Min"/>
+                        android:text='@{"Delivery In "+HotelDetails.hotelModel.deliveryIn+" Min"}'/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -87,8 +168,8 @@
 
                         <ImageView
                             android:layout_width="30dp"
-                            android:src="@drawable/vegimg"
                             android:layout_gravity="right"
+                            android:src='@{HotelDetails.hotelModel.vegOnly.equalsIgnoreCase("Y")?@drawable/vegimg:@drawable/nonvegimg}'
                             android:layout_height="20dp" />
 
                         <RatingBar
@@ -96,10 +177,10 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/ratingBar"
                             android:layout_weight="1"
+                            android:rating="@{HotelDetails.hotelModel.ratting}"
                             android:layout_margin="2dp"
                             style="?android:attr/ratingBarStyleIndicator"
                             android:scaleX=".4"
-                            android:rating="5"
                             android:layout_gravity="right"
                             android:scaleY=".4"
                             android:transformPivotX="0dp"
@@ -130,9 +211,13 @@
                         android:layout_marginTop="10dp"
                         android:textColor="@color/black"
                         android:textSize="@dimen/dp_12"
-                        android:text="11:22 AM to 11:00 PM"/>
+                        android:text='@{HotelDetails.dateFormatted}'
+/>
 
                     <Switch
+                        android:onCheckedChanged="@{(switch, checked) -> HotelDetails.onCheckedChanged(checked)}"
+                        android:checked="false"
+                        android:id="@+id/vegonly"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
@@ -153,6 +238,7 @@
             android:color="?android:colorControlHighlight"
             android:fastScrollEnabled="true"
             android:gravity="start"
+            android:adapter="@{menuAdapter}"
             android:layout_marginBottom="60dp"
             android:verticalScrollbarPosition="right"/>
 

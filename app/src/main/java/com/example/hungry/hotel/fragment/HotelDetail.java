@@ -1,34 +1,32 @@
 package com.example.hungry.hotel.fragment;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.hungry.HomePage;
 import com.example.hungry.R;
-import com.example.hungry.databinding.FragmentHomeBinding;
-import com.example.hungry.hotel.viewmodels.HomeViewModel;
-import com.example.hungry.hotel_detail.adapter.Hotel_deteail_adapter;
+import com.example.hungry.databinding.FragmentHotelDetailBinding;
+import com.example.hungry.hotel.model.Menu;
+import com.example.hungry.hotel.model.MenuResult;
+import com.example.hungry.hotel.viewmodels.HotelDetailViewModel;
+import com.example.hungry.hotel.adapter.MenuAdapter;
 import com.example.hungry.hotel_detail.model.HotelModel;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 
 public class HotelDetail extends Fragment {
-    ArrayList personNames = new ArrayList<>(Arrays.asList("Person 1", "Person 2", "Person 3", "Person 4", "Person 5", "Person 6", "Person 7", "Person 8", "Person 9", "Person 10", "Person 11", "Person 12", "Person 13", "Person 14"));
-    ArrayList personImages = new ArrayList<>(Arrays.asList(R.drawable.food, R.drawable.food, R.drawable.food, R.drawable.food, R.drawable.food, R.drawable.food, R.drawable.food, R.drawable.food, R.drawable.food, R.drawable.food, R.drawable.food, R.drawable.food, R.drawable.food, R.drawable.food));
     private static final String ARG_PARAM1 = "param1";
     HotelModel hotelModel;
-    HomeViewModel homeViewModel;
+    HotelDetailViewModel hotelDetailViewModel;
 
     public HotelDetail() {
         // Required empty public constructor
@@ -57,13 +55,22 @@ public class HotelDetail extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        FragmentHomeBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_hotel_detail, container, false);
-
-
+        final FragmentHotelDetailBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_hotel_detail, container, false);
+        hotelDetailViewModel = ViewModelProviders.of(this).get(HotelDetailViewModel.class);
+        hotelDetailViewModel.setMutaibleHotelModel(hotelModel);
+        binding.setLifecycleOwner(this);
+        binding.setHotelDetails(hotelDetailViewModel);
+        hotelDetailViewModel.loadMenus(null);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(binding.toolbar);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2);
         binding.rvLine.setLayoutManager(gridLayoutManager); // set LayoutManager to RecyclerView
-        Hotel_deteail_adapter hotel_deteail_adapter = new Hotel_deteail_adapter(getActivity(), personNames, personImages);
-        binding.rvLine.setAdapter(hotel_deteail_adapter); // set the Adapter to RecyclerView
+        hotelDetailViewModel.menuResultMutableLiveData.observeForever(new Observer<MenuResult>() {
+            @Override
+            public void onChanged(MenuResult menuResult) {
+                MenuAdapter hotel_deteail_adapter = new MenuAdapter((HomePage) getActivity(), menuResult.result);
+                binding.setMenuAdapter(hotel_deteail_adapter);
+            }
+        });
         return  binding.getRoot();
     }
 

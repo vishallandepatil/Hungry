@@ -115,11 +115,11 @@ public class HotelModel implements Parcelable {
         this.cityId = cityId;
     }
 
-    public String getRatting() {
+    public Float getRatting() {
         return ratting;
     }
 
-    public void setRatting(String ratting) {
+    public void setRatting(float ratting) {
         this.ratting = ratting;
     }
 
@@ -186,7 +186,7 @@ public class HotelModel implements Parcelable {
     @SerializedName("CI_MA_ID")
     String cityId;
     @SerializedName("RATTING")
-    String ratting;
+    float ratting;
     @SerializedName("REG_ID")
     String reg_id;
     @SerializedName("PAN_NO")

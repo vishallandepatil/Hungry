@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import com.example.hungry.dish.fragment.DishFragment;
 import com.example.hungry.hotel.fragment.HotelFragment;
+import com.example.hungry.hotel.model.Menu;
 import com.example.hungry.myOrder.fragment.OrderFragment;
 import com.example.hungry.profile.fragment.ProfileFragment;
 import com.example.hungry.hotel.model.ImageModel;
@@ -23,12 +24,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class HomePage extends AppCompatActivity {
-    private TextView mTextMessage;
+    public ArrayList<Menu> cart =new ArrayList<>();
 
-    private static ViewPager mPager;
-    private static int currentPage = 0;
-    private static int NUM_PAGES = 0;
-    private ArrayList<ImageModel> imageModelArrayList;
 
    /* private int[] myImageList = new int[]{R.drawable.shop, R.drawable.shop
             ,R.drawable.shop,R.drawable.shop};*/
@@ -39,7 +36,6 @@ public class HomePage extends AppCompatActivity {
         setContentView(R.layout.activity_home_page);
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
-        mTextMessage = findViewById(R.id.message);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         loadFragment(new HotelFragment());

@@ -55,14 +55,16 @@ public class HotelsAdapter extends RecyclerView.Adapter<HotelsAdapter.MyViewHold
         holder.contry.setText(linesModel.getMealType());
         holder.address.setText(linesModel.getAddress());
         try {
-            DateFormat dateFormat = new SimpleDateFormat("hh:mm a");
-            holder.time.setText(dateFormat.parse(linesModel.getStarTtime())
-                    + " To " + dateFormat.parse(linesModel.getEndTime()));
+            DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+            DateFormat dateFormat2 = new SimpleDateFormat("HH:mm a");
+            holder.time.setText(dateFormat2.format(dateFormat.parse(linesModel.getStarTtime()))+ " To " + dateFormat2.format(dateFormat.parse(linesModel.getEndTime())));
+                    ;
+            //)
         }catch (Exception e){
-
+            holder.time.setText("uu");
         }
         holder.ratingBar.setNumStars(5);
-        holder.ratingBar.setRating(Float.parseFloat(linesModel.getRatting()));
+        holder.ratingBar.setRating(linesModel.getRatting());
         holder.discout.setVisibility(View.GONE);
         Glide.with(context)
                 .load(linesModel.getVegOnly().equalsIgnoreCase("Y")?R.drawable.vegimg:R.drawable.nonvegimg)
@@ -77,7 +79,7 @@ public class HotelsAdapter extends RecyclerView.Adapter<HotelsAdapter.MyViewHold
                 HotelDetail hotel = HotelDetail.getInstance(linesModel);
                 ((AppCompatActivity)context).getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.frame_container, hotel)
+                        .replace(R.id.frame_container, hotel).addToBackStack(null)
                         .commit();
 
             }
