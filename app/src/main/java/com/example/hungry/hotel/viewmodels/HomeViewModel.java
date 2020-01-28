@@ -1,12 +1,9 @@
 package com.example.hungry.hotel.viewmodels;
 
-import android.util.Log;
-import android.widget.Toast;
-
 import com.example.hungry.hotel.model.HotelResult;
 import com.example.hungry.hotel.model.SliderResult;
-import com.example.hungry.hotel.repositori.HotelRepository;
-import com.example.hungry.hotel.repositori.SliderRepository;
+import com.example.hungry.hotel.repository.HotelRepository;
+import com.example.hungry.hotel.repository.SliderRepository;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;

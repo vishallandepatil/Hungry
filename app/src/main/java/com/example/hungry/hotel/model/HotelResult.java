@@ -1,6 +1,5 @@
 package com.example.hungry.hotel.model;
 
-import com.example.hungry.hotel_detail.model.HotelModel;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;

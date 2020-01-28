@@ -1,8 +1,6 @@
-package com.example.hungry.hotel.repositori;
+package com.example.hungry.hotel.repository;
 
-import com.example.hungry.hotel.api.Hotels;
 import com.example.hungry.hotel.api.Slider;
-import com.example.hungry.hotel.model.HotelResult;
 import com.example.hungry.hotel.model.SliderResult;
 import com.example.hungry.retrofitsetting.RetrofitClientInstance;
 

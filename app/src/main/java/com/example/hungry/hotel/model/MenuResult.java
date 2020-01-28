@@ -1,14 +1,12 @@
 package com.example.hungry.hotel.model;
 
-import com.example.hungry.hotel_detail.model.HotelModel;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
 public class MenuResult {
 
-        @SerializedName("message")
-        public String message;
+
 
         public void setMessage(String message) {
             this.message = message;
@@ -29,7 +27,8 @@ public class MenuResult {
         public void setType(String type) {
             this.type = type;
         }
-
+    @SerializedName("message")
+    public String message;
         @SerializedName("status")
         public  int status;
         @SerializedName("count")

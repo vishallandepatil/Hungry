@@ -17,11 +17,10 @@ import com.example.hungry.HomePage;
 import com.example.hungry.R;
 import com.example.hungry.databinding.FragmentHotelDetailBinding;
 import com.example.hungry.hotel.CartListner;
-import com.example.hungry.hotel.model.Menu;
 import com.example.hungry.hotel.model.MenuResult;
 import com.example.hungry.hotel.viewmodels.HotelDetailViewModel;
 import com.example.hungry.hotel.adapter.MenuAdapter;
-import com.example.hungry.hotel_detail.model.HotelModel;
+import com.example.hungry.hotel.model.HotelModel;
 
 
 public class HotelDetail extends Fragment {

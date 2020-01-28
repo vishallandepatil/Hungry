@@ -1,18 +1,12 @@
 package com.example.hungry.hotel.viewmodels;
 
-import android.widget.ImageView;
-import android.widget.Switch;
-import android.widget.Toast;
-
-import com.bumptech.glide.Glide;
 import com.example.hungry.hotel.model.MenuResult;
-import com.example.hungry.hotel.repositori.MenuRepository;
-import com.example.hungry.hotel_detail.model.HotelModel;
+import com.example.hungry.hotel.repository.MenuRepository;
+import com.example.hungry.hotel.model.HotelModel;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
-import androidx.databinding.BindingAdapter;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;

@@ -1,12 +1,8 @@
 package com.example.hungry.hotel.adapter;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -18,7 +14,7 @@ import com.bumptech.glide.Glide;
 import com.example.hungry.R;
 
 import com.example.hungry.hotel.fragment.HotelDetail;
-import com.example.hungry.hotel_detail.model.HotelModel;
+import com.example.hungry.hotel.model.HotelModel;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

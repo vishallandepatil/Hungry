@@ -1,4 +1,4 @@
-package com.example.hungry.hotel_detail.model;
+package com.example.hungry.hotel.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -10,6 +10,48 @@ public class HotelModel implements Parcelable {
     int id;
     @SerializedName("NAME")
     String name;
+
+    protected HotelModel(Parcel in) {
+        id = in.readInt();
+        name = in.readString();
+        address = in.readString();
+        if (in.readByte() == 0) {
+            lang = null;
+        } else {
+            lang = in.readDouble();
+        }
+        if (in.readByte() == 0) {
+            lat = null;
+        } else {
+            lat = in.readDouble();
+        }
+        googleid = in.readString();
+        vegOnly = in.readString();
+        image = in.readString();
+        starTtime = in.readString();
+        endTime = in.readString();
+        deliveryIn = in.readString();
+        mealType = in.readString();
+        cityId = in.readString();
+        ratting = in.readFloat();
+        reg_id = in.readString();
+        panNo = in.readString();
+        mobileNo = in.readString();
+        isActive = in.readString();
+        franchaices = in.readString();
+    }
+
+    public static final Creator<HotelModel> CREATOR = new Creator<HotelModel>() {
+        @Override
+        public HotelModel createFromParcel(Parcel in) {
+            return new HotelModel(in);
+        }
+
+        @Override
+        public HotelModel[] newArray(int size) {
+            return new HotelModel[size];
+        }
+    };
 
     public int getId() {
         return id;
@@ -205,6 +247,34 @@ public class HotelModel implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-
+        dest.writeInt(id);
+        dest.writeString(name);
+        dest.writeString(address);
+        if (lang == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeDouble(lang);
+        }
+        if (lat == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeDouble(lat);
+        }
+        dest.writeString(googleid);
+        dest.writeString(vegOnly);
+        dest.writeString(image);
+        dest.writeString(starTtime);
+        dest.writeString(endTime);
+        dest.writeString(deliveryIn);
+        dest.writeString(mealType);
+        dest.writeString(cityId);
+        dest.writeFloat(ratting);
+        dest.writeString(reg_id);
+        dest.writeString(panNo);
+        dest.writeString(mobileNo);
+        dest.writeString(isActive);
+        dest.writeString(franchaices);
     }
 }
