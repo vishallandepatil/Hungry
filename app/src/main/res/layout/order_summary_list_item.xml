@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+    <import type="android.view.View"/>
+    <import type="androidx.recyclerview.widget.LinearLayoutManager"/>
+        <variable
+            name="menu"
+            type="com.example.hungry.hotel.model.Menu" />
+    </data>
 <androidx.cardview.widget.CardView android:layout_width="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:elevation="@dimen/dp_5"
     android:layout_margin="@dimen/dp_5"
     app:cardBackgroundColor="@color/white"
     android:layout_height="wrap_content"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -15,11 +23,13 @@
 
 
 
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/food_img"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_alignParentLeft="true"
+            app:imageUrl="@{menu.path}"
             android:layout_gravity="center_vertical"
             android:layout_margin="@dimen/dp_5"
             android:src="@drawable/food"
@@ -40,7 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dp_2"
-                android:text="Hotel Prasad"
+                android:text="@{menu.name}"
                 android:layout_marginLeft="@dimen/dp_5"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="@dimen/dp_12"
@@ -51,7 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dp_2"
-                android:text="Indiam"
+                android:text="@{menu.description}"
                 android:layout_marginLeft="@dimen/dp_5"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="@dimen/dp_12" />
@@ -63,6 +73,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center"
+                    android:onClick="@{(v) -> menu.onRemovieQntity(v)}"
                     android:layout_margin="@dimen/dp_5"
                     android:background="@drawable/ic_remove_24dp"/>
 
@@ -76,7 +87,7 @@
                 android:maxLength="20"
                 android:padding="@dimen/dp_5"
                 android:layout_margin="@dimen/dp_5"
-                android:text="40"
+                android:text='@{menu.qtyOrder+""}'
                 android:paddingLeft="@dimen/dp_2"
                 android:paddingRight="@dimen/dp_2"
                 android:textColor="@color/colorPrimaryDark"
@@ -86,6 +97,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center"
+                    android:onClick="@{(v) -> menu.onAddQntity(v)}"
                     android:layout_margin="@dimen/dp_5"
                     android:background="@drawable/ic_add"/>
             </LinearLayout>
@@ -96,9 +108,11 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="70dp"
+            android:layout_marginRight="20dp"
             android:layout_marginTop="2dp"
-            android:src="@drawable/vegimg" />
+            android:id="@id/id_type"
+            android:src='@{menu.type.equalsIgnoreCase("VEG")?@drawable/vegimg:@drawable/nonvegimg}'
+/>
 
         <RatingBar
             android:id="@+id/ratingBar"
@@ -107,6 +121,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginRight="-50dp"
+            android:visibility="invisible"
             android:layout_marginTop="-5dp"
             android:max="5"
             android:rating="2.5"
@@ -119,7 +134,7 @@
             android:layout_width="wrap_content"
             android:layout_height="@dimen/dp_30"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/ratingBar"
+            android:layout_below="@+id/id_type"
             android:background="@drawable/remove_border"
             android:layout_margin="@dimen/dp_5"
             android:padding="@dimen/dp_5"
@@ -138,9 +153,9 @@
             android:layout_alignParentRight="true"
             android:layout_below="@+id/remove"
             android:layout_gravity="bottom"
+            android:text='@{"Rs. "+menu.total}'
             android:layout_marginRight="@dimen/dp_5"
             android:padding="@dimen/dp_5"
-            android:text="Rs. 100"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:textSize="@dimen/dp_12" />
@@ -152,5 +167,6 @@
 
 
 </androidx.cardview.widget.CardView>
+</layout>
 
 

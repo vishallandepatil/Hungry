@@ -1,4 +1,4 @@
-package com.example.hungry.OrderSummary.model;
+package com.example.hungry.ordersummary.model;
 
 public class Order_summary_Model {
 

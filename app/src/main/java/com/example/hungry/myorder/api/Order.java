@@ -1,6 +1,6 @@
-package com.example.hungry.myOrder.api;
+package com.example.hungry.myorder.api;
 
-import com.example.hungry.myOrder.model.OrderResult;
+import com.example.hungry.myorder.model.OrderResult;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

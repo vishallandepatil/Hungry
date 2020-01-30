@@ -1,4 +1,4 @@
-package com.example.hungry.myOrder.model;
+package com.example.hungry.myorder.model;
 
 import com.google.gson.annotations.SerializedName;
 

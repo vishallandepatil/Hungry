@@ -75,6 +75,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MyViewHolder> 
                     }
                     if (!isAdded) {
                         dataModel.isAddedToCart = true;
+                        dataModel.total=dataModel.amount;
                         context.cart.add(dataModel);
                         notifyDataSetChanged();
                         if(listner!=null){

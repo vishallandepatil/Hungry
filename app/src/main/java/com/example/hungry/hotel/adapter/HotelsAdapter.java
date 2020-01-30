@@ -80,6 +80,9 @@ public class HotelsAdapter extends RecyclerView.Adapter<HotelsAdapter.MyViewHold
 
             }
         });
+//        Glide.with(context)
+//                .load(linesModel.imagPath)
+//                .into(holder.food_img);
 
 
     }
@@ -88,6 +91,7 @@ public class HotelsAdapter extends RecyclerView.Adapter<HotelsAdapter.MyViewHold
 
         private TextView hotel_name, contry, address, time,discout;
         private ImageView ivVeg, add;
+        private  ImageView food_img;
         private RatingBar ratingBar;
 
         public MyViewHolder(View view) {
@@ -99,6 +103,7 @@ public class HotelsAdapter extends RecyclerView.Adapter<HotelsAdapter.MyViewHold
             ratingBar = (RatingBar) view.findViewById(R.id.ratingBar);
             discout = (TextView) view.findViewById(R.id.discout);
             ivVeg = (ImageView) view.findViewById(R.id.ivVeg);
+            food_img = (ImageView) view.findViewById(R.id.food_img);
 
 
 

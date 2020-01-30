@@ -14,13 +14,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.hungry.HomePage;
+import com.example.hungry.ordersummary.OrderSummary;
 import com.example.hungry.R;
 import com.example.hungry.databinding.FragmentHotelDetailBinding;
 import com.example.hungry.hotel.CartListner;
+import com.example.hungry.hotel.model.Menu;
 import com.example.hungry.hotel.model.MenuResult;
 import com.example.hungry.hotel.viewmodels.HotelDetailViewModel;
 import com.example.hungry.hotel.adapter.MenuAdapter;
 import com.example.hungry.hotel.model.HotelModel;
+import com.example.hungry.util.GridSpacingItemDecoration;
 
 
 public class HotelDetail extends Fragment {
@@ -63,7 +66,10 @@ public class HotelDetail extends Fragment {
         hotelDetailViewModel.loadMenus(null);
         ((AppCompatActivity)getActivity()).setSupportActionBar(binding.toolbar);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2);
-        binding.rvLine.setLayoutManager(gridLayoutManager); // set LayoutManager to RecyclerView
+        binding.rvLine.setLayoutManager(gridLayoutManager);
+        binding.rvLine.addItemDecoration(new GridSpacingItemDecoration(2,  /*getResources().getDimensionPixelSize(R.dimen.grid_margin)*/6,false));
+
+        // set LayoutManager to RecyclerView
         hotelDetailViewModel.menuResultMutableLiveData.observeForever(new Observer<MenuResult>() {
             @Override
             public void onChanged(MenuResult menuResult) {
@@ -74,12 +80,30 @@ public class HotelDetail extends Fragment {
                     public void onChange() {
                         String size = ((HomePage) getActivity()).cart.size()+"";
                         binding.ibcartCount.setText(size+"");
+                        binding.itemcount.setText("Items: "+((HomePage) getActivity()).cart.size());
+                        double total=0;
+                        for(Menu menu : ((HomePage) getActivity()).cart){
+                            total+= menu.amount;
+                        }
+                        binding.total.setText("Total: Rs. "+total);
                     }
                 });
             }
         });
         String size = ((HomePage) getActivity()).cart.size()+"";
         binding.ibcartCount.setText(size+"");
+        binding.ibcartCount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (((HomePage) getActivity()).cart.size() > 0) {
+                    OrderSummary fragment = new OrderSummary();
+                    getActivity().getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.frame_container, fragment).addToBackStack(null)
+                            .commit();
+                }
+            }
+        });
         return  binding.getRoot();
     }
 

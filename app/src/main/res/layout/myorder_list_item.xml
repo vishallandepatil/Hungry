@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="order"
+            type="com.example.hungry.myorder.model.Order" />
+    </data>
+
 <androidx.cardview.widget.CardView android:layout_width="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardElevation="@dimen/dp_5"
     app:cardBackgroundColor="@color/white"
     android:layout_marginLeft="@dimen/dp_5"
     android:layout_marginRight="@dimen/dp_5"
     android:layout_marginTop="@dimen/dp_5"
-    android:layout_height="wrap_content"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:layout_height="wrap_content">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -17,14 +25,15 @@
 
 
 
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/food_img"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_alignParentLeft="true"
             android:layout_gravity="center_vertical"
             android:layout_margin="@dimen/dp_5"
-            android:src="@drawable/food"
+            app:imageUrl="@{order.imagPath}"
             app:civ_border_color="#FF000000"
             app:civ_border_width="1dp" />
 
@@ -42,8 +51,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dp_2"
-                android:text="Hotel Prasad"
+                android:text="@{order.hotelName}"
                 android:textColor="@color/colorPrimaryDark"
+
                 android:textSize="@dimen/dp_20"
                 android:textStyle="bold" />
 
@@ -51,7 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dp_2"
-                android:text="11:22 Am to 11:00PM"
+                android:text="@{order.dateFormatted}"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="@dimen/dp_12" />
 
@@ -60,8 +70,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dp_2"
                 android:ellipsize="end"
-                android:maxLength="20"
-                android:text="Order Delivered"
+                app:orderstatus="@{order.status}"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="@dimen/dp_12" />
 
@@ -73,6 +82,7 @@
             android:layout_height="25dp"
             android:layout_alignParentRight="true"
             android:layout_marginTop="2dp"
+            android:visibility='@{order.deliveryBoyStatus.equalsIgnoreCase("NOTASSIGN")?View.GONE:View.VISIBLE}'
             android:layout_marginRight="69dp"
             android:src="@drawable/ic_person_black_24dp" />
 
@@ -83,7 +93,8 @@
             android:layout_alignParentRight="true"
             android:layout_marginTop="6dp"
             android:layout_marginRight="18dp"
-            android:text="Gajan"
+            android:visibility='@{order.deliveryBoyStatus.equalsIgnoreCase("NOTASSIGN")?View.GONE:View.VISIBLE}'
+            android:text='@{order.fName+" "+order.lName}'
             android:textColor="@color/black" />
 
         <View
@@ -96,57 +107,18 @@
 
 
         <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/view1"
             android:orientation="vertical">
-
             <LinearLayout
+                android:id="@+id/itemlist"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:weightSum="2">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textSize="@dimen/dp_12"
-                    android:text="Shev Bhaji(1 Bhaji)"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textSize="@dimen/dp_12"
-                    android:text="Rs. 200"/>
+                android:layout_height="wrap_content">
 
             </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:weightSum="2">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textSize="@dimen/dp_12"
-                    android:text="Shev Bhaji(1 Bhaji)"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textSize="@dimen/dp_12"
-                    android:text="Rs. 200"/>
-
-
-            </LinearLayout>
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -155,6 +127,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="2dp"
+                android:paddingLeft="@dimen/dp_10"
+
                 android:weightSum="2">
 
                 <TextView
@@ -173,7 +147,7 @@
                     android:textStyle="bold"
                     android:textSize="@dimen/dp_12"
                     android:textColor="@color/black"
-                    android:text="Rs. 200"/>
+                    android:text='@{"RS "+order.total}'/>
 
 
             </LinearLayout>
@@ -181,7 +155,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/grey"/>
-
 
             <Button
                 android:id="@+id/loginBtn"
@@ -191,14 +164,15 @@
                 android:background="@drawable/updateborder"
                 android:layout_gravity="center"
                 android:text="Rate order"
+                android:visibility='@{order.status.equalsIgnoreCase("DILIVERED")?View.VISIBLE:View.GONE}'
                 android:layout_marginBottom="@dimen/dp_5"
                 android:textAllCaps="false"
                 android:textColor="@color/DarkGreen"
                 android:textSize="@dimen/dp_14"
                 android:textStyle="normal" />
 
-
         </LinearLayout>
+
 
     </RelativeLayout>
 
@@ -206,5 +180,4 @@
 
 
 </androidx.cardview.widget.CardView>
-
-
+</layout>
