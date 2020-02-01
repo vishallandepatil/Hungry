@@ -27,8 +27,8 @@ public class MenuResult {
         public void setType(String type) {
             this.type = type;
         }
-    @SerializedName("message")
-    public String message;
+        @SerializedName("message")
+        public String message;
         @SerializedName("status")
         public  int status;
         @SerializedName("count")

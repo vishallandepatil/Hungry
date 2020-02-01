@@ -1,5 +1,6 @@
 package com.example.hungry.ordersummary.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,12 +10,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.databinding.DataBindingUtil;
+import androidx.databinding.Observable;
 import androidx.databinding.library.baseAdapters.BR;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hungry.R;
 import com.example.hungry.databinding.MyorderListItemBinding;
 import com.example.hungry.databinding.OrderSummaryListItemBinding;
+import com.example.hungry.hotel.CartListner;
 import com.example.hungry.hotel.model.Menu;
 
 import java.util.ArrayList;
@@ -27,6 +30,12 @@ public class OrderSummaryAdapter extends RecyclerView.Adapter<OrderSummaryAdapte
         this.menus = menus;
         this.context = context;
     }
+
+    public void setCartListner(CartListner cartListner) {
+        this.cartListner = cartListner;
+    }
+
+    CartListner cartListner ;
 
     @Override
     public OrderSummaryAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -46,10 +55,27 @@ public class OrderSummaryAdapter extends RecyclerView.Adapter<OrderSummaryAdapte
         holder.binding.remove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               menus.remove(menu);
-               notifyItemRemoved(position);
+
+                   menus.remove(menu);
+                   notifyItemRemoved(position);
+                   if (cartListner != null) {
+                       cartListner.onChange();
+                   }
+                if(menus.size()==0) {
+                    ((Activity)context).onBackPressed();
+                }
+
             }
         });
+        menu.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
+            @Override
+            public void onPropertyChanged(Observable sender, int propertyId) {
+                if(cartListner!=null){
+                    cartListner.onChange();
+                }
+            }
+        });
+
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {

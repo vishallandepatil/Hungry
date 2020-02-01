@@ -3,12 +3,15 @@ package com.example.hungry;
 import android.os.Bundle;
 
 
+import com.example.hungry.app.PrefManager;
 import com.example.hungry.ordersummary.OrderSummary;
 import com.example.hungry.dish.fragment.DishFragment;
 import com.example.hungry.hotel.fragment.HotelDetail;
 import com.example.hungry.hotel.fragment.HotelFragment;
 import com.example.hungry.hotel.model.Menu;
 import com.example.hungry.myorder.fragment.OrderFragment;
+import com.example.hungry.ordersummary.model.TaxResult;
+import com.example.hungry.ordersummary.repository.TaxRepository;
 import com.example.hungry.profile.fragment.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -17,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.MutableLiveData;
 
 
 import android.view.MenuItem;
@@ -26,7 +30,7 @@ import java.util.ArrayList;
 
 public class HomePage extends AppCompatActivity {
     public ArrayList<Menu> cart =new ArrayList<>();
-
+    public MutableLiveData<TaxResult> taxResultMutableLiveData;
 
    /* private int[] myImageList = new int[]{R.drawable.shop, R.drawable.shop
             ,R.drawable.shop,R.drawable.shop};*/
@@ -35,7 +39,6 @@ public class HomePage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-
         final BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         final FragmentManager manager = getSupportFragmentManager();
@@ -56,6 +59,8 @@ public class HomePage extends AppCompatActivity {
             }
         });
         loadFragment(new HotelFragment());
+
+        taxResultMutableLiveData=new TaxRepository().getTax(new PrefManager(this).getUserDetails().getCITY_MASTER_ID()+"");
 
 
         //  imageModelArrayList = new ArrayList<>();
