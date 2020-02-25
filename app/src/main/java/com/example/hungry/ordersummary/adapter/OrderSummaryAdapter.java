@@ -23,7 +23,7 @@ import com.example.hungry.hotel.model.Menu;
 import java.util.ArrayList;
 
 public class OrderSummaryAdapter extends RecyclerView.Adapter<OrderSummaryAdapter.MyViewHolder> {
-    public ArrayList<Menu> menus =new ArrayList<>();
+    public ArrayList<Menu> menus = new ArrayList<>();
     Context context;
 
     public OrderSummaryAdapter(ArrayList<Menu> menus, Context context) {
@@ -35,7 +35,7 @@ public class OrderSummaryAdapter extends RecyclerView.Adapter<OrderSummaryAdapte
         this.cartListner = cartListner;
     }
 
-    CartListner cartListner ;
+    CartListner cartListner;
 
     @Override
     public OrderSummaryAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -56,13 +56,13 @@ public class OrderSummaryAdapter extends RecyclerView.Adapter<OrderSummaryAdapte
             @Override
             public void onClick(View v) {
 
-                   menus.remove(menu);
-                   notifyItemRemoved(position);
-                   if (cartListner != null) {
-                       cartListner.onChange();
-                   }
-                if(menus.size()==0) {
-                    ((Activity)context).onBackPressed();
+                menus.remove(menu);
+                notifyDataSetChanged();
+                if (cartListner != null) {
+                    cartListner.onChange();
+                }
+                if (menus.size() == 0) {
+                    ((Activity) context).onBackPressed();
                 }
 
             }
@@ -70,7 +70,7 @@ public class OrderSummaryAdapter extends RecyclerView.Adapter<OrderSummaryAdapte
         menu.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
             @Override
             public void onPropertyChanged(Observable sender, int propertyId) {
-                if(cartListner!=null){
+                if (cartListner != null) {
                     cartListner.onChange();
                 }
             }
@@ -81,12 +81,14 @@ public class OrderSummaryAdapter extends RecyclerView.Adapter<OrderSummaryAdapte
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         OrderSummaryListItemBinding binding;
+
         public MyViewHolder(OrderSummaryListItemBinding binding) {
             super(binding.getRoot());
-            this.binding=binding;
+            this.binding = binding;
 
 
         }
+
         public void setBinding(Object obj) {
             binding.setVariable(BR.menu, obj);
             binding.executePendingBindings();

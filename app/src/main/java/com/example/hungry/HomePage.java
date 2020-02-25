@@ -13,6 +13,7 @@ import com.example.hungry.myorder.fragment.OrderFragment;
 import com.example.hungry.ordersummary.model.TaxResult;
 import com.example.hungry.ordersummary.repository.TaxRepository;
 import com.example.hungry.profile.fragment.ProfileFragment;
+import com.example.hungry.promocode.PromocodeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
@@ -49,7 +50,7 @@ public class HomePage extends AppCompatActivity {
                 Fragment fragment = manager.findFragmentById(R.id.frame_container);
                 int i = manager.getBackStackEntryCount();
 
-                if (fragment instanceof HotelDetail ||fragment instanceof OrderSummary) {
+                if (fragment instanceof HotelDetail ||fragment instanceof OrderSummary||fragment instanceof PromocodeFragment) {
                     navView.setVisibility(View.GONE);
                 } else {
                     navView.setVisibility(View.VISIBLE);

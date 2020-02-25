@@ -11,6 +11,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
+import com.bumptech.glide.signature.StringSignature;
 import com.example.hungry.R;
 
 import com.example.hungry.hotel.fragment.HotelDetail;
@@ -80,9 +85,26 @@ public class HotelsAdapter extends RecyclerView.Adapter<HotelsAdapter.MyViewHold
 
             }
         });
-//        Glide.with(context)
-//                .load(linesModel.imagPath)
-//                .into(holder.food_img);
+
+
+
+        holder.selectedgreeting.setVisibility(View.VISIBLE);
+        Glide.with(context).load(linesModel.getImage()).listener(new RequestListener<String, GlideDrawable>() {
+            @Override
+            public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
+                holder.selectedgreeting.setVisibility(View.GONE);
+                return false;
+            }
+
+            @Override
+            public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+                holder.selectedgreeting.setVisibility(View.GONE);
+                return false;
+            }
+        }).dontAnimate().
+                diskCacheStrategy(DiskCacheStrategy.ALL).
+                signature(new StringSignature(linesModel.getImage())).
+                error(R.drawable.comming_soon).thumbnail(0.5f).into(holder.food_img);
 
 
     }
@@ -92,6 +114,7 @@ public class HotelsAdapter extends RecyclerView.Adapter<HotelsAdapter.MyViewHold
         private TextView hotel_name, contry, address, time,discout;
         private ImageView ivVeg, add;
         private  ImageView food_img;
+        private  ImageView selectedgreeting;
         private RatingBar ratingBar;
 
         public MyViewHolder(View view) {
@@ -104,6 +127,7 @@ public class HotelsAdapter extends RecyclerView.Adapter<HotelsAdapter.MyViewHold
             discout = (TextView) view.findViewById(R.id.discout);
             ivVeg = (ImageView) view.findViewById(R.id.ivVeg);
             food_img = (ImageView) view.findViewById(R.id.food_img);
+            selectedgreeting = (ImageView) view.findViewById(R.id.selectedgreeting);
 
 
 

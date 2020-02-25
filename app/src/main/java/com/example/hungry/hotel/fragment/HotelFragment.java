@@ -90,6 +90,10 @@ public class HotelFragment extends Fragment {
                 HotelsAdapter linesAdapter = new HotelsAdapter(hotelResult.result, (AppCompatActivity ) getActivity());
                 binding.rvLine.setLayoutManager(new LinearLayoutManager(getContext()));
                 binding.rvLine.setAdapter(linesAdapter);
+                if(hotelResult.status!=200){
+                    binding.llNoRecord.setVisibility(View.VISIBLE);
+                    binding.rvLine.setVisibility(View.GONE);
+                }
             }
         });
         binding.simpleSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -126,7 +130,13 @@ public class HotelFragment extends Fragment {
 
             }
         });
+        binding.btnRefress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                homeFragmnetViewModel.loadHotels(user.getCITY_MASTER_ID()+"",veg_only,name,ratting,limit,satrt);
 
+            }
+        });
 
 
 
@@ -187,8 +197,11 @@ public class HotelFragment extends Fragment {
 
 //Set circle indicator radius
         //indicator.setRadius(5 * density);
-
-        NUM_PAGES =sliderResult.result.size();
+        if (sliderResult.result!=null) {
+            NUM_PAGES = sliderResult.result.size();
+        } else {
+            NUM_PAGES=0;
+        }
 
         // Auto start of viewpager
         final Handler handler = new Handler();

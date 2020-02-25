@@ -16,6 +16,8 @@ public class HomeViewModel extends ViewModel {
 
     public MutableLiveData<SliderResult> sliderResultMutableLiveData = new MutableLiveData<>();
     public MutableLiveData<HotelResult> hotelResultMutableLiveData = new MutableLiveData<>();
+    public MutableLiveData<Boolean> isLoading = new MutableLiveData<>();
+
 
     public void loadSliderImages(String city_id){
 
@@ -24,11 +26,12 @@ public class HomeViewModel extends ViewModel {
 
     }
     public void loadHotels(String city_id, String veg_only, String name, String ratting, String limit, String satrt){
-
+        isLoading.setValue(true);
          new HotelRepository().getHotel(city_id,veg_only,name,ratting,limit,satrt).observeForever(new Observer<HotelResult>() {
             @Override
             public void onChanged(HotelResult hotelResult) {
                 hotelResultMutableLiveData.setValue(hotelResult);
+                isLoading.setValue(false);
             }
         });
 

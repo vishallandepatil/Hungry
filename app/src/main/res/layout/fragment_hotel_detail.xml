@@ -4,55 +4,57 @@
     xmlns:card_view="http://schemas.android.com/tools">
 
     <data>
-        <import type="android.view.View"/>
-        <import type="androidx.recyclerview.widget.GridLayoutManager"/>
+
+        <import type="android.view.View" />
+
+        <import type="androidx.recyclerview.widget.GridLayoutManager" />
+
         <variable
             name="HotelDetails"
             type="com.example.hungry.hotel.viewmodels.HotelDetailViewModel" />
+
         <variable
             name="menuAdapter"
             type="com.example.hungry.hotel.adapter.MenuAdapter" />
 
     </data>
+
+
     <RelativeLayout
-    android:layout_width="match_parent"
-    android:background="@color/white"
-    android:layout_height="match_parent">
-    <LinearLayout
-        android:layout_above="@+id/bottom"
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="@dimen/dp_2"
-        android:orientation="vertical">
+        android:background="@color/white">
 
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:titleTextColor="@color/colorPrimaryDark"
             android:layout_alignParentStart="true"
-            app:title="Hungry"
+            android:background="@color/colorPrimary"
             android:elevation="@dimen/dp_5"
             app:navigationIcon='@drawable/ic_menu_black_24dp'
-            android:background="@color/colorPrimary" >
+            app:title="Hungry"
+            app:titleTextColor="@color/colorPrimaryDark">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
                 <TextView
-                    android:background="@color/white"
-                    android:layout_width="0dp"
                     android:id="@+id/toolbartitle"
                     style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
+                    android:background="@color/white"
                     android:text="Hungry"
                     android:textColor="@color/colorPrimaryDark"
-                    android:textSize="16dp"/>
+                    android:textSize="16dp" />
                 <!--android:text="Insta Greetings"-->
 
                 <RelativeLayout
@@ -60,37 +62,41 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:gravity="center_vertical">
+
                     <ImageButton
                         android:id="@+id/ibcart"
                         android:layout_width="50dp"
                         android:layout_height="match_parent"
                         android:background="@null"
                         android:src="@drawable/ic_shopping_cart_black_24dp" />
+
                     <TextView
+                        android:id="@+id/ibcartCount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="0"
-                        android:id="@+id/ibcartCount"
-                        android:textSize="10dp"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textStyle="bold"
-                        android:gravity="center"
-                        android:background="@drawable/txt_round_shape"
                         android:layout_alignParentRight="true"
                         android:layout_marginTop="7dp"
                         android:layout_marginRight="5dp"
-                        android:visibility="visible"/>
+                        android:background="@drawable/txt_round_shape"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="10dp"
+                        android:textStyle="bold"
+                        android:visibility="visible" />
                 </RelativeLayout>
+
                 <ImageButton
                     android:id="@+id/iconshare"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_gravity="center"
-                    android:visibility="gone"
                     android:background="@null"
                     android:padding="10dp"
-                    android:src="@drawable/ic_share_black_24dp" />
+                    android:src="@drawable/ic_share_black_24dp"
+                    android:visibility="gone" />
+
                 <ImageButton
                     android:id="@+id/login"
                     android:layout_width="wrap_content"
@@ -99,205 +105,278 @@
                     android:layout_gravity="center"
                     android:background="@null"
                     android:padding="10dp"
-                    android:visibility="gone"
-                    android:src="@drawable/loginmenu" />
+                    android:src="@drawable/loginmenu"
+                    android:visibility="gone" />
             </LinearLayout>
 
 
         </androidx.appcompat.widget.Toolbar>
-
-
-        <androidx.cardview.widget.CardView
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/llNoRecord"
             android:layout_width="match_parent"
-            android:elevation="@dimen/dp_5"
-            android:layout_margin="@dimen/dp_10"
-            app:cardBackgroundColor="@color/white"
-            android:layout_marginBottom="60dp"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:elevation="0dp"
+            android:layout_below="@+id/toolbar"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:visibility="@{HotelDetails.menuResultMutableLiveData.status!=200?View.VISIBLE:View.GONE}">
 
-            <LinearLayout
+            <ImageView
+                android:id="@+id/erroricon"
+                android:layout_width="200dp"
+                android:layout_height="150dp"
+                android:layout_marginBottom="16dp"
+                android:scaleType="fitXY"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/errorTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dp_5"
-                android:weightSum="2">
+                android:gravity="center"
+                android:text="No Record Available"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/errorsubtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2.5dp"
+                android:gravity="center"
+                android:text="@{HotelDetails.menuResultMutableLiveData.message}" />
+
+            <Button
+                android:id="@+id/btnRefress"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/ic_rounded_corner"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="Retry"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:elevation="@dimen/dp_10"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/bottom"
+            android:layout_below="@id/toolbar"
+            android:id="@+id/data"
+            android:layout_margin="@dimen/dp_2"
+            android:orientation="vertical"
+            android:visibility="@{HotelDetails.isShown?View.VISIBLE:View.GONE}">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_10"
+                android:layout_marginBottom="60dp"
+                android:elevation="@dimen/dp_5"
+                app:cardBackgroundColor="@color/white">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dp_15"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:textSize="@dimen/dp_14"
-                        android:textColor="@color/DarkGreen"
-                        android:text="@{HotelDetails.hotelModel.name}" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/DarkGreen"
-                        android:textSize="@dimen/dp_12"
-                        android:text="@{HotelDetails.hotelModel.mealType}"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/dp_12"
-                        android:text="@{HotelDetails.hotelModel.address}"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/dp_12"
-                        android:text='@{"Delivery In "+HotelDetails.hotelModel.deliveryIn+" Min"}'/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight="1">
+                    android:layout_margin="@dimen/dp_5"
+                    android:weightSum="2">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:visibility="visible"
-                        android:weightSum="2"
-                        android:layout_marginTop="@dimen/dp_10"
-                        android:layout_gravity="right">
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_gravity="right"
-                            android:src='@{HotelDetails.hotelModel.vegOnly.equalsIgnoreCase("Y")?@drawable/vegimg:@drawable/nonvegimg}'
-                            android:layout_height="20dp" />
-
-                        <RatingBar
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/ratingBar"
-                            android:layout_weight="1"
-                            android:rating="@{HotelDetails.hotelModel.ratting}"
-                            android:layout_margin="2dp"
-                            style="?android:attr/ratingBarStyleIndicator"
-                            android:scaleX=".4"
-                            android:layout_gravity="right"
-                            android:scaleY=".4"
-                            android:transformPivotX="0dp"
-                            android:transformPivotY="0dp"
-                            android:max="5"/>
+                            android:text="@{HotelDetails.hotelModel.name}"
+                            android:textColor="@color/DarkGreen"
+                            android:textSize="@dimen/dp_14"
+                            android:textStyle="bold" />
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{HotelDetails.hotelModel.mealType}"
+                            android:textColor="@color/DarkGreen"
+                            android:textSize="@dimen/dp_12" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{HotelDetails.hotelModel.address}"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/dp_12" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text='@{"Delivery In "+HotelDetails.hotelModel.deliveryIn+" Min"}'
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/dp_12" />
                     </LinearLayout>
 
-                    <!--<TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/discout"
-                        android:visibility="visible"
-                        android:textColor="@color/white"
-                        android:background="@drawable/button_border"
-                        android:textSize="@dimen/dp_12"
-                        android:padding="@dimen/dp_5"
-                        android:textStyle="italic"
-                        android:text="10 % off"/>-->
-
-
-
-                    <TextView
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/id_date_time"
-                        android:layout_gravity="bottom"
-                        android:layout_marginTop="10dp"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/dp_12"
-                        android:text='@{HotelDetails.dateFormatted}'
-/>
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
-                    <Switch
-                        android:onCheckedChanged="@{(switch, checked) -> HotelDetails.onCheckedChanged(checked)}"
-                        android:checked="false"
-                        android:id="@+id/vegonly"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:layout_marginTop="@dimen/dp_10"
+                            android:visibility="visible"
+                            android:weightSum="2">
+
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="right"
+                                android:src='@{HotelDetails.hotelModel.vegOnly.equalsIgnoreCase("Y")?@drawable/vegimg:@drawable/nonvegimg}' />
+
+                            <RatingBar
+                                android:id="@+id/ratingBar"
+                                style="?android:attr/ratingBarStyleIndicator"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+                                android:layout_margin="2dp"
+                                android:layout_weight="1"
+                                android:max="5"
+                                android:rating="@{HotelDetails.hotelModel.ratting}"
+                                android:scaleX=".4"
+                                android:scaleY=".4"
+                                android:transformPivotX="0dp"
+                                android:transformPivotY="0dp" />
+
+                        </LinearLayout>
+
+                        <!--<TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/discout"
+                            android:visibility="visible"
+                            android:textColor="@color/white"
+                            android:background="@drawable/button_border"
+                            android:textSize="@dimen/dp_12"
+                            android:padding="@dimen/dp_5"
+                            android:textStyle="italic"
+                            android:text="10 % off"/>-->
+
+
+                        <TextView
+                            android:id="@+id/id_date_time"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:layout_marginTop="10dp"
+                            android:text='@{HotelDetails.dateFormatted}'
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/dp_12" />
+
+                        <Switch
+                            android:id="@+id/vegonly"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:checked="false"
+                            android:onCheckedChanged="@{(switch, checked) -> HotelDetails.onCheckedChanged(checked)}" />
+                    </LinearLayout>
+
+
                 </LinearLayout>
 
+            </androidx.cardview.widget.CardView>
+            <ProgressBar
+                android:visibility="@{HotelDetails.isLoading?View.VISIBLE:View.GONE}"
+                android:id="@+id/progressBar1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_line"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adapter="@{menuAdapter}"
+                android:color="?android:colorControlHighlight"
+                android:fastScrollEnabled="true"
+                android:background="@color/white"
+                android:gravity="start"
+                android:verticalScrollbarPosition="right" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:layout_above="@id/bottom"
+            android:background="@drawable/shadow" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/bottom"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0.0px"
+            android:elevation="@dimen/dp_10"
+            android:visibility="@{HotelDetails.menuResultMutableLiveData.status==200?View.VISIBLE:View.GONE}"
+            app:cardBackgroundColor="@color/white"
+            card_view:cardElevation="10dp"
+            card_view:cardPreventCornerOverlap="false">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingLeft="@dimen/dp_10"
+                android:paddingTop="@dimen/dp_10"
+                android:paddingRight="@dimen/dp_10"
+                android:weightSum="2">
+
+                <TextView
+                    android:id="@+id/itemcount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:text="Item: 0"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/dp_14"
+                    android:textStyle="bold" />
 
 
+                <TextView
+                    android:id="@+id/total"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:text="Total: Rs. 0"
 
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/dp_14"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
 
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_line"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:color="?android:colorControlHighlight"
-            android:fastScrollEnabled="true"
-            android:gravity="start"
-            android:adapter="@{menuAdapter}"
-            android:verticalScrollbarPosition="right"/>
+    </RelativeLayout>
 
-    </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="4dp"
-            android:layout_above="@id/bottom"
-            android:background="@drawable/shadow"/>
-    <androidx.cardview.widget.CardView
-        android:id="@+id/bottom"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:elevation="@dimen/dp_10"
-        card_view:cardPreventCornerOverlap="false"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="0.0px"
-        card_view:cardElevation="10dp"
-        app:cardBackgroundColor="@color/white">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingTop="@dimen/dp_10"
-            android:paddingLeft="@dimen/dp_10"
-            android:paddingRight="@dimen/dp_10"
-            android:weightSum="2">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Item: 0"
-                android:gravity="center_horizontal"
-                android:id="@+id/itemcount"
-                android:textColor="@color/black"
-                android:textSize="@dimen/dp_14"
-                android:textStyle="bold" />
-
-
-            <TextView
-                android:id="@+id/total"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Total: Rs. 0"
-                android:gravity="center_horizontal"
-
-                android:textColor="@color/black"
-                android:textSize="@dimen/dp_14"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-</RelativeLayout>
 </layout>

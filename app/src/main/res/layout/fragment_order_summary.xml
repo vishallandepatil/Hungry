@@ -12,10 +12,10 @@
         name="Adapter"
         type="com.example.hungry.ordersummary.adapter.OrderSummaryAdapter" />
     </data>
-<LinearLayout
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+
     >
 
     <androidx.appcompat.widget.Toolbar
@@ -34,20 +34,25 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/summary_rv"
+        android:layout_below="@+id/toolbar"
+        android:layout_above="@+id/promo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:color="?android:colorControlHighlight"
         android:adapter="@{Adapter}"
         android:fastScrollEnabled="true"
+
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:gravity="start"
         android:verticalScrollbarPosition="right"/>
 
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/promo"
         android:layout_width="match_parent"
         android:elevation="@dimen/dp_5"
         android:layout_margin="@dimen/dp_5"
+        android:layout_above="@+id/layouttotal"
         app:cardBackgroundColor="@color/white"
         android:layout_height="wrap_content">
         <LinearLayout
@@ -65,7 +70,8 @@
                 android:layout_margin="@dimen/dp_5"
                 android:hint="Enter Promo code"/>
             <ImageButton
-                android:layout_width="wrap_content"
+                android:id="@+id/promoadd"
+                android:layout_width="@dimen/dp_20"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="0.2"
@@ -74,13 +80,13 @@
                 android:hint=""/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-
-    <!-- Header -->
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
+        android:id="@+id/layouttotal"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:elevation="@dimen/dp_5"
         android:layout_margin="@dimen/dp_5"
+        android:layout_above="@+id/address"
         app:cardBackgroundColor="@color/white"
         android:layout_height="wrap_content"
         xmlns:android="http://schemas.android.com/apk/res/android">
@@ -196,7 +202,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text='@{"Rs. "+OrderSummaryViewModel.discount.doubleValue()}'
+                        android:text='@{"Rs. -"+OrderSummaryViewModel.discount.doubleValue()}'
                         android:textSize="@dimen/dp_12"
                         android:textColor="@color/darkGreen" />
                     <View
@@ -224,45 +230,71 @@
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_add"
-            android:paddingLeft="@dimen/dp_5"
-            android:text="Address"
-            />
-
-
-
-    </LinearLayout>
-
     <androidx.cardview.widget.CardView
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="@dimen/dp_5"
         android:layout_marginRight="@dimen/dp_5"
         android:layout_marginBottom="@dimen/dp_5"
+        android:id="@+id/address"
 
         android:elevation="@dimen/dp_5"
-        app:cardBackgroundColor="@color/DarkGreen">
+        >
 
         <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp_10"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/place"
+                    android:padding="@dimen/dp_5"
+                    android:layout_width="wrap_content"
+                    android:src="@drawable/ic_place_black_24dp"
+                    android:layout_height="wrap_content">
+
+                </ImageView>
+
+                <TextView
+                    android:id="@+id/message"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:layout_toRightOf="@+id/place"
+                    android:layout_toLeftOf="@+id/add"
+                    android:padding="@dimen/dp_5"
+                    android:layout_width="match_parent"
+                    android:textSize="@dimen/dp_10"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/dp_5"
+                    android:textColor="@color/red"
+                    android:text="Please add Delivery address to confirm Order"
+                    />
+
+
+                <ImageView
+                    android:id="@+id/add"
+                    android:padding="@dimen/dp_5"
+                    android:background="@drawable/circle_background"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:src="@drawable/ic_add"
+                    android:layout_height="wrap_content">
+
+                </ImageView>
+
+            </RelativeLayout>
 
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
+                app:cardBackgroundColor="@color/DarkGreen"
+                android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:layout_gravity="bottom"
                 android:background="@color/DarkGreen"
@@ -276,8 +308,5 @@
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
-
-
-
-</LinearLayout>
+</RelativeLayout>
 </layout>

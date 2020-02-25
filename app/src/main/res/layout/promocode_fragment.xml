@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View"/>
+        <import type="androidx.recyclerview.widget.LinearLayoutManager"/>
+        <variable
+            name="promocodemodel"
+            type="com.example.hungry.promocode.viewmodel.PromocodeViewModel" />
+        <variable
+            name="adapter"
+            type="com.example.hungry.promocode.adapters.PromoCodeAdapter" />
+
+    </data>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleTextColor="@color/colorPrimaryDark"
+        android:layout_alignParentStart="true"
+        app:title="Promocodes"
+        android:elevation="@dimen/dp_5"
+        app:navigationIcon='@drawable/ic_menu_black_24dp'
+        android:background="@color/colorPrimary" >
+
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:textSize="@dimen/dp_20"
+        android:fontFamily="@font/ptserif_bold"
+        android:padding="@dimen/dp_20"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Available Promotions"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="@{promocodemodel.isLoading?View.VISIBLE:View.GONE}" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_line"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:color="?android:colorControlHighlight"
+        android:fastScrollEnabled="true"
+        android:gravity="start"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:adapter="@{adapter}"
+        android:verticalScrollbarPosition="right"
+        android:visibility="@{promocodemodel.promoCodeResultMutableLiveData.status!=200?View.GONE:View.VISIBLE }"/>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/llNoRecord"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/erroricon"
+            android:layout_width="200dp"
+            android:layout_height="150dp"
+            android:layout_marginBottom="16dp"
+            android:scaleType="fitXY"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/errorTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="No Record Available"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/errorsubtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2.5dp"
+
+            android:gravity="center"/>
+
+        <Button
+            android:id="@+id/btnRefress"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/ic_rounded_corner"
+
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="Retry"
+            android:textColor="@color/white"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>
+</layout>

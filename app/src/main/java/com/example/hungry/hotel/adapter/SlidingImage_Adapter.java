@@ -10,6 +10,11 @@ import android.widget.ImageView;
 
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
+import com.bumptech.glide.signature.StringSignature;
 import com.example.hungry.hotel.model.ImageModel;
 import com.example.hungry.R;
 import com.example.hungry.hotel.model.SliderResult;
@@ -53,11 +58,26 @@ public class SlidingImage_Adapter extends PagerAdapter {
         assert imageLayout != null;
         final ImageView imageView = (ImageView) imageLayout
                 .findViewById(R.id.image);
-        Glide.with(context)
-                .load(imageModelArrayList.get(position).getIMG_PATH())
-                .into(imageView);
+        final ImageView loader = (ImageView) imageLayout
+                .findViewById(R.id.selectedgreeting);
 
+        loader.setVisibility(View.VISIBLE);
+        Glide.with(context).load(imageModelArrayList.get(position).getIMG_PATH()).listener(new RequestListener<String, GlideDrawable>() {
+            @Override
+            public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
+                loader.setVisibility(View.GONE);
+                return false;
+            }
 
+            @Override
+            public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+                loader.setVisibility(View.GONE);
+                return false;
+            }
+        }).dontAnimate().
+                diskCacheStrategy(DiskCacheStrategy.ALL).
+                signature(new StringSignature(imageModelArrayList.get(position).getCREATED_AT())).
+                error(R.drawable.comming_soon).thumbnail(0.5f).into(imageView);
 
         view.addView(imageLayout, 0);
 
