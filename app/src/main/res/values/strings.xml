@@ -24,9 +24,9 @@
 
     <string name="settings">Settings</string>
 
-    <string name="item_total_name">Item Total Amount</string>
+    <string name="item_total_name">Net Total Amount</string>
     <string name="delivery_fees">Delivery Fees</string>
-    <string name="tax">Tax</string>
+    <string name="tax">Standard Service Charge</string>
     <string name="discount">Discount</string>
 
     <string-array name="genders">
@@ -34,4 +34,5 @@
         <item>Male</item>
         <item>Female</item>
     </string-array>
+    <string name="title_activity_address">Map</string>
 </resources>

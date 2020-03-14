@@ -3,6 +3,7 @@ package com.example.hungry.hotel.viewmodels;
 import com.example.hungry.hotel.model.MenuResult;
 import com.example.hungry.hotel.repository.MenuRepository;
 import com.example.hungry.hotel.model.HotelModel;
+import com.example.hungry.ordersummary.repository.TaxRepository;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -16,8 +17,12 @@ public class HotelDetailViewModel extends ViewModel {
     public int max = 5;
     public MutableLiveData<HotelModel>  hotelModel=new MutableLiveData<>();
     public MutableLiveData<MenuResult> menuResultMutableLiveData =new MutableLiveData<>();
+    public MutableLiveData<Boolean> isLoading = new MutableLiveData<>();
+    public MutableLiveData<Boolean> isShown = new MutableLiveData<>();
+
 
     public HotelDetailViewModel() {
+        isShown.setValue(true);
     }
 
     public void setMutaibleHotelModel(HotelModel hotelModel) {
@@ -37,11 +42,15 @@ public class HotelDetailViewModel extends ViewModel {
         }
     }
     public void loadMenus(String type){
+        isLoading.setValue(true);
         MenuRepository repository =new  MenuRepository();
         repository.getMenus(type,"Y",/*hotelModel.getValue().getId()*/"1",null,null).observeForever(new Observer<MenuResult>() {
             @Override
             public void onChanged(MenuResult menuResult) {
                 menuResultMutableLiveData.setValue(menuResult);
+                isLoading.setValue(false);
+                isShown.setValue(menuResult.status==200);
+
             }
         });
 

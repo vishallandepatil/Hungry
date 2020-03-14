@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:padding="1dip" >
@@ -9,7 +10,17 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:adjustViewBounds="true"
+
         android:layout_gravity="center"
-        android:src="@mipmap/ic_launcher"
         android:scaleType="centerCrop" />
-</FrameLayout>
+
+    <ImageView
+        android:id="@+id/selectedgreeting"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/loader_newrelease"
+        android:background="@null"
+        android:elevation="2dp"
+        />
+</RelativeLayout>

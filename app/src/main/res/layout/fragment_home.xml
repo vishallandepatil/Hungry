@@ -22,12 +22,12 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:titleTextColor="@color/colorPrimaryDark"
         android:layout_alignParentStart="true"
-        app:title="Hungry"
+        android:background="@color/colorPrimary"
         android:elevation="@dimen/dp_5"
         app:navigationIcon='@drawable/ic_menu_black_24dp'
-        android:background="@color/colorPrimary" >
+        app:title="Hungry"
+        app:titleTextColor="@color/colorPrimaryDark" >
 
 
     </androidx.appcompat.widget.Toolbar>
@@ -51,30 +51,30 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="10"
-        android:background="@drawable/border"
-        android:padding="8dp"
         android:layout_margin="4dp"
-        android:orientation="horizontal">
+        android:background="@drawable/border"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:weightSum="10">
 
 
         <SearchView
             android:id="@+id/simpleSearchView"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
-            android:closeIcon="@drawable/ic_close_black_24dp"
             android:layout_weight="8"
-            android:searchIcon="@drawable/ic_search_black_24dp"
-
+            android:closeIcon="@drawable/ic_close_black_24dp"
             android:iconifiedByDefault="false"
-            android:queryHint="Search here" />
+
+            android:queryHint="Search here"
+            android:searchIcon="@drawable/ic_search_black_24dp" />
 
         <ImageView
+            android:id="@+id/filter"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_weight="2"
-            android:id="@+id/filter"
             android:layout_gravity="center"
+            android:layout_weight="2"
             android:src="@drawable/filter"/>
     </LinearLayout>
 
@@ -85,15 +85,74 @@
         android:layout_height="1dp"
         android:background="@color/grey"></View>
 
-
-    <androidx.recyclerview.widget.RecyclerView
+        <ProgressBar
+            android:id="@+id/progressBar1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="@{homeViewModel.isLoading.booleanValue()?View.VISIBLE:View.GONE}" />
+        <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_line"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:color="?android:colorControlHighlight"
         android:fastScrollEnabled="true"
         android:gravity="start"
-        android:verticalScrollbarPosition="right"/>
+        android:verticalScrollbarPosition="right"
+        android:visibility="@{homeViewModel.hotelResultMutableLiveData.status!=200?View.GONE:View.VISIBLE }"/>
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/llNoRecord"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/erroricon"
+                android:layout_width="200dp"
+                android:layout_height="150dp"
+                android:layout_marginBottom="16dp"
+                android:scaleType="fitXY"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/errorTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="No Record Available"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/errorsubtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2.5dp"
+
+                android:gravity="center"
+                android:text="@{homeViewModel.hotelResultMutableLiveData.message}"/>
+
+            <Button
+                android:id="@+id/btnRefress"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/ic_rounded_corner"
+
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="Retry"
+                android:textColor="@color/white"/>
+
+        </LinearLayout>
+
 
 
 
