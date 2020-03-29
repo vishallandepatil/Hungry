@@ -20,6 +20,7 @@ import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.hungry.R;
@@ -31,6 +32,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -46,7 +48,8 @@ public class Address extends AppCompatActivity implements OnMapReadyCallback, Vi
     TextView message, line2;
     boolean locationFound = true;
     GoogleMap addressMap;
-
+    ProgressBar progressBar1;
+    FloatingActionButton floatingActionButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,15 +59,17 @@ public class Address extends AppCompatActivity implements OnMapReadyCallback, Vi
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         place.setOnClickListener(this);
-        message.setOnClickListener(this);
+        floatingActionButton.setOnClickListener(this);
 
 
     }
 
     private void instantiateView() {
         place = findViewById(R.id.place);
+        floatingActionButton = findViewById(R.id.location);
         message = findViewById(R.id.message);
         line2 = findViewById(R.id.line2);
+        progressBar1 = findViewById(R.id.progressBar1);
         message.setText(Html.fromHtml("<u>Add current location</u>"));
     }
 
@@ -88,13 +93,14 @@ public class Address extends AppCompatActivity implements OnMapReadyCallback, Vi
             case R.id.place:
 
                 break;
-            case R.id.message:
+            case R.id.location:
                 addCustomerLocation();
                 break;
         }
     }
 
     private void addCustomerLocation() {
+        progressBar1.setVisibility(View.VISIBLE);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         listener = new LocationListener() {
             @Override
@@ -127,16 +133,22 @@ public class Address extends AppCompatActivity implements OnMapReadyCallback, Vi
                             LatLng currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
                         addressMap.addMarker(new MarkerOptions().position(currentLocation).title("Marker in customer location"));
                         addressMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation));
+                        addressMap.animateCamera(CameraUpdateFactory.newLatLng(currentLocation));
                         message.setText(city);
                         line2.setText(address);
                         message.setEnabled(false);
-
+                        progressBar1.setVisibility(View.GONE);
                     } catch (IOException e) {
                         e.printStackTrace();
                         message.setEnabled(true);
+                        progressBar1.setVisibility(View.GONE);
                     }
 
 
+                } else
+                {
+                    message.setEnabled(true);
+                    progressBar1.setVisibility(View.GONE);
                 }
 
             }
@@ -155,6 +167,7 @@ public class Address extends AppCompatActivity implements OnMapReadyCallback, Vi
             public void onProviderDisabled(String provider) {
                 Intent i = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                 startActivity(i);
+                progressBar1.setVisibility(View.GONE);
             }
         };
 
@@ -196,8 +209,6 @@ public class Address extends AppCompatActivity implements OnMapReadyCallback, Vi
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // permission was granted, yay! Do the
-                    // contacts-related task you need to do.
 
                 } else {
                     // permission denied, boo! Disable the
