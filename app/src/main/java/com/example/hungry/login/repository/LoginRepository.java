@@ -143,4 +143,37 @@ public class LoginRepository {
 
     }
 
+
+    public MutableLiveData<ResultVerifyOTP> updateUser(User user){
+
+        Registration city = RetrofitClientInstance.getRetrofitInstance().create(Registration.class);
+        final MutableLiveData<ResultVerifyOTP> resultMutableLiveData = new MutableLiveData<>();
+        Call<ResultVerifyOTP> call = city.update(RetrofitClientInstance.API_KEY,user.getCM_MOBILE(),""+user.getCITY_MASTER_ID());
+        final ResultVerifyOTP result = new ResultVerifyOTP();
+
+        call.enqueue(new Callback<ResultVerifyOTP>() {
+            @Override
+            public void onResponse(Call<ResultVerifyOTP> call, Response<ResultVerifyOTP> response) {
+                ResultVerifyOTP data = response.body();
+                resultMutableLiveData.setValue(data);
+
+            }
+
+            @Override
+            public void onFailure(Call<ResultVerifyOTP> call, Throwable t) {
+                if(t.getLocalizedMessage().equalsIgnoreCase("Unable to resolve host \"hungryindia.co.in\": No address associated with hostname"))
+                { result.setMessage("Please Check Enternet Connection");
+
+                } else {
+                    result.setMessage(t.getLocalizedMessage());
+                }
+                resultMutableLiveData.setValue(result);
+
+
+            }
+        });
+        return resultMutableLiveData;
+
+    }
+
 }

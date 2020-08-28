@@ -55,30 +55,83 @@
         android:layout_above="@+id/layouttotal"
         app:cardBackgroundColor="@color/white"
         android:layout_height="wrap_content">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dp_5"
-            android:orientation="horizontal"
-            android:weightSum="2">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_5"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:id="@+id/promcolay"
+                android:weightSum="2">
 
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="1.8"
+                <EditText
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1.7"
+                    android:visibility="@{OrderSummaryViewModel.promoCodeMutableLiveData!=null?View.GONE:View.VISIBLE}"
+
+                    android:layout_margin="@dimen/dp_5"
+                    android:hint="Enter Promo code"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="1.6"
+                    android:gravity="center_vertical"
+                    android:text="Promocode Used"
+                    android:visibility="@{OrderSummaryViewModel.promoCodeMutableLiveData==null?View.GONE:View.VISIBLE}"
+                    android:textColor="@color/colorAccent"
+                    android:layout_margin="@dimen/dp_5"
+                    android:hint="Enter Promo code"/>
+
+                <Button
+                    android:id="@+id/promoadd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dp_25"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.3"
+                    android:gravity="center"
+                    android:visibility="@{OrderSummaryViewModel.promoCodeMutableLiveData!=null?View.GONE:View.VISIBLE}"
+                    android:text="View Codes"
+                    android:textColor="@color/white"
+                    android:background="@drawable/addtocart_border"
+                    android:layout_margin="@dimen/dp_5"
+                    android:hint=""/>
+
+                <Button
+                    android:id="@+id/promoremove"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dp_25"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.4"
+                    android:gravity="center"
+                    android:visibility="@{OrderSummaryViewModel.promoCodeMutableLiveData==null?View.GONE:View.VISIBLE}"
+                    android:text="Remove"
+                    android:textColor="@color/white"
+                    android:background="@drawable/remove_border"
+                    android:layout_margin="@dimen/dp_5"
+                    android:hint=""/>
+
+
+            </LinearLayout>
+            <TextView
                 android:layout_margin="@dimen/dp_5"
-                android:hint="Enter Promo code"/>
-            <ImageButton
-                android:id="@+id/promoadd"
-                android:layout_width="@dimen/dp_20"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="0.2"
-                android:background="@drawable/right_arrow_24dp"
-                android:layout_margin="@dimen/dp_5"
-                android:hint=""/>
-        </LinearLayout>
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/promcolay"
+                android:textColor="@color/red"
+                android:visibility="@{OrderSummaryViewModel.errorpromocode==null?View.GONE:View.VISIBLE}"
+                android:text="@{OrderSummaryViewModel.errorpromocode}"
+                android:layout_width="match_parent"/>
+
+        </RelativeLayout>
+
+
+            android:layout_height="wrap_content"/>
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -274,9 +327,23 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="@dimen/dp_5"
                     android:textColor="@color/red"
+                    android:visibility="@{OrderSummaryViewModel.isErrorShown?View.VISIBLE:View.GONE}"
                     android:text="Please add Delivery address to confirm Order"
                     />
-
+                <TextView
+                    android:id="@+id/addressline"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:layout_toRightOf="@+id/place"
+                    android:layout_toLeftOf="@+id/add"
+                    android:padding="@dimen/dp_5"
+                    android:layout_width="match_parent"
+                    android:textSize="@dimen/dp_10"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/dp_5"
+                    android:textColor="@color/black"
+                    android:visibility="@{OrderSummaryViewModel.isErrorShown?View.GONE:View.VISIBLE}"
+                    android:text="@{OrderSummaryViewModel.address}"
+                    />
 
                 <ImageView
                     android:id="@+id/add"
@@ -285,6 +352,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_width="wrap_content"
                     android:src="@drawable/ic_add"
+                    android:visibility="@{OrderSummaryViewModel.isErrorShown?View.VISIBLE:View.GONE}"
                     android:layout_height="wrap_content">
 
                 </ImageView>
@@ -293,14 +361,14 @@
 
             <Button
                 android:layout_height="50dp"
-                app:cardBackgroundColor="@color/DarkGreen"
                 android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:layout_gravity="bottom"
-                android:background="@color/DarkGreen"
+                android:background="@{OrderSummaryViewModel.isErrorShown?@color/grey:@color/DarkGreen}"
                 android:text="Confirm"
                 android:textColor="@color/white"
                 android:textSize="@dimen/dp_14"
+                android:onClick="@{(v) -> OrderSummaryViewModel.onClick(v)}"
                 android:textStyle="bold" />
 
 

@@ -4,8 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -18,7 +22,10 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.text.Html;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -26,6 +33,11 @@ import android.widget.TextView;
 import com.example.hungry.R;
 
 
+import com.example.hungry.address.model.AddressResult;
+import com.example.hungry.address.model.DeliveryAddresss;
+import com.example.hungry.address.viewmodel.DeliveryAddessModel;
+import com.example.hungry.databinding.ActivityAddressBinding;
+import com.example.hungry.login.viewmodels.LoginViewModel;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -33,6 +45,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -50,22 +63,50 @@ public class Address extends AppCompatActivity implements OnMapReadyCallback, Vi
     GoogleMap addressMap;
     ProgressBar progressBar1;
     FloatingActionButton floatingActionButton;
+    double langitude;
+    double latitude;
+    DeliveryAddessModel deliveryAddessModel;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_address);
+        deliveryAddessModel= ViewModelProviders.of(this).get(DeliveryAddessModel.class);
+
+        ActivityAddressBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_address);
+
+
         instantiateView();
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         place.setOnClickListener(this);
+
         floatingActionButton.setOnClickListener(this);
+        binding.setAddressModel(deliveryAddessModel);
+        binding.setLifecycleOwner(this);
+        deliveryAddessModel.addressResultMutableLiveData.observeForever(new Observer<AddressResult>() {
+            @Override
+            public void onChanged(AddressResult addressResult) {
+                Gson gson = new Gson();
+
+                String json = gson.toJson(addressResult);
+                Intent returnIntent = new Intent();
+                returnIntent.putExtra("result",json);
+                setResult(Activity.RESULT_OK,returnIntent);
+                finish();
+
+            }
+        });
+
+
 
 
     }
 
     private void instantiateView() {
         place = findViewById(R.id.place);
+
         floatingActionButton = findViewById(R.id.location);
         message = findViewById(R.id.message);
         line2 = findViewById(R.id.line2);
@@ -96,6 +137,7 @@ public class Address extends AppCompatActivity implements OnMapReadyCallback, Vi
             case R.id.location:
                 addCustomerLocation();
                 break;
+
         }
     }
 
@@ -116,20 +158,21 @@ public class Address extends AppCompatActivity implements OnMapReadyCallback, Vi
                     geocoder = new Geocoder(Address.this, Locale.getDefault());
 
                     try {
+                        langitude=location.getLatitude();
+                        latitude=location.getLongitude();
                         addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
+
+                        DeliveryAddresss deliveryAddresss =new DeliveryAddresss(""+location.getLatitude(), ""+location.getLongitude(), addresses.get(0).getAddressLine(0),  addresses.get(0).getFeatureName());
                         String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
                         String city = addresses.get(0).getLocality();
-                        String state = addresses.get(0).getAdminArea();
-                        String country = addresses.get(0).getCountryName();
-                        String postalCode = addresses.get(0).getPostalCode();
-                        String knownName = addresses.get(0).getFeatureName(); // Only if available else return NULL
-                        Log.d("address_complete", addresses.get(0).toString());
-                        Log.d("address_address", address);
-                        Log.d("address_city", city);
-                        Log.d("address_state", state);
-                        Log.d("address_country", country);
-                        Log.d("address_postalcode", postalCode);
-                        Log.d("address_knownanme", knownName);
+                        deliveryAddessModel.deliveryAddresss=deliveryAddresss;
+//                        String state = addresses.get(0).getAdminArea();
+//                        String country = addresses.get(0).getCountryName();
+//                        String postalCode = addresses.get(0).getPostalCode();
+//                        String knownName = addresses.get(0).getFeatureName();
+
+
+
                             LatLng currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
                         addressMap.addMarker(new MarkerOptions().position(currentLocation).title("Marker in customer location"));
                         addressMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation));
@@ -141,6 +184,7 @@ public class Address extends AppCompatActivity implements OnMapReadyCallback, Vi
                     } catch (IOException e) {
                         e.printStackTrace();
                         message.setEnabled(true);
+                        locationFound = true;
                         progressBar1.setVisibility(View.GONE);
                     }
 

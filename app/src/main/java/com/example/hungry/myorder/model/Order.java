@@ -7,9 +7,12 @@ import com.bumptech.glide.Glide;
 import com.google.gson.annotations.SerializedName;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.BindingAdapter;
 
 public class Order {
@@ -74,6 +77,8 @@ public class Order {
     public String hotelName;
     @SerializedName("IMG_URL")
     public String imagPath;
+    @SerializedName("delivery_fees")
+    public String delivery_fees;
 
     @SerializedName("items")
     public ArrayList<OrderItem> items;
@@ -98,33 +103,54 @@ public class Order {
     public static void statusOrder(TextView view, String status) {
         //'','','READY','','DILIVERED','CANCELD','REJECTED'
         String text="";
-        switch (status){
-            case "OPEN":
-                text="Waiting for Hotel Responce";
-                break;
-            case "ACCEPT":
-                text="Waiting for Hotel Responce";
-                break;
-            case "READY":
-                text="Your Order is Ready";
-                break;
-            case "DIPACHED":
-                text="Delivery Boy is Heading to you";
-                break;
-            case "DILIVERED":
-                text="Delivered  successfully";
-                break;
-            case "CANCELD":
-                text="you cancel your order";
-                break;
-            case "REJECTED":
-                text="Hotel Reject your order";
-                break;
 
-        }
+            if(status.equalsIgnoreCase("OPEN")) {
+                text = "Waiting for Hotel Responce";
+            } else if (status.equalsIgnoreCase("ACCEPTED")) {
+
+                    text = "Accepted by Hotel";
+            } else if (status.equalsIgnoreCase("READY")) {
+
+                text = "Your Order is Ready";
+            } else if (status.equalsIgnoreCase("DISPATCHED")) {
+
+                text = "Delivery Boy is Heading to you";
+            } else if (status.equalsIgnoreCase("DELIVERED")) {
+
+                text = "Delivered  successfully";
+            } else if (status.equalsIgnoreCase("CANCELED")) {
+
+                text = "you cancel your order";
+            }else if (status.equalsIgnoreCase("REJECTED")) {
+
+                text = "Hotel Reject your order";
+            }
+
+
+
         view.setText(text);
 
     }
+    @BindingAdapter("bindcreatedAt")
+    public  static void bindcreatedAt(@NonNull TextView textView, Order order) {
+        SimpleDateFormat outputdatformat = new SimpleDateFormat("dd-MMM hh:mm: a");
+        SimpleDateFormat inputdsf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        if(order.createdAt !=null) {
+            Date datestr = null;
+            try {
+                datestr = inputdsf.parse(order.createdAt);
+                textView.setText(outputdatformat.format(datestr));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+        } else {
+            textView.setText("");
+        }
+    }
+
+
 
 }
 

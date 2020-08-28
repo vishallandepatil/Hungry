@@ -44,7 +44,7 @@ public class HotelDetailViewModel extends ViewModel {
     public void loadMenus(String type){
         isLoading.setValue(true);
         MenuRepository repository =new  MenuRepository();
-        repository.getMenus(type,"Y",/*hotelModel.getValue().getId()*/"1",null,null).observeForever(new Observer<MenuResult>() {
+        repository.getMenus(type,"Y",hotelModel.getValue().getId()+"",null,null).observeForever(new Observer<MenuResult>() {
             @Override
             public void onChanged(MenuResult menuResult) {
                 menuResultMutableLiveData.setValue(menuResult);

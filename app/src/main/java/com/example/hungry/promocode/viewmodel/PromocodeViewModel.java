@@ -1,5 +1,6 @@
 package com.example.hungry.promocode.viewmodel;
 
+import com.example.hungry.promocode.model.PromoCode;
 import com.example.hungry.promocode.model.PromoCodeResult;
 import com.example.hungry.promocode.repository.PromoCodeRepository;
 
@@ -22,7 +23,7 @@ public class PromocodeViewModel extends ViewModel {
 
     public void loadPromoCode(String menuID, String hotelID,String client_id) {
         isLoading.setValue(true);
-        new PromoCodeRepository().getPromoCodes(menuID,hotelID , client_id).observeForever(new Observer<PromoCodeResult>() {
+        new PromoCodeRepository().getPromoCodes(hotelID,menuID , client_id).observeForever(new Observer<PromoCodeResult>() {
             @Override
             public void onChanged(PromoCodeResult orderResult) {
                 promoCodeResultMutableLiveData.setValue(orderResult);

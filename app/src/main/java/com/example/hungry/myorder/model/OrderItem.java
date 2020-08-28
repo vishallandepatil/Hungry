@@ -22,6 +22,31 @@ public class OrderItem {
     String createdAt;
     @SerializedName("UPDADATED_AT")
     String updatedAt;
+
+    public String getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(String totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public String getQuntity() {
+        return quntity;
+    }
+
+    public void setQuntity(String quntity) {
+        this.quntity = quntity;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @SerializedName("NAME")
     String name;
     @SerializedName("TYPE")

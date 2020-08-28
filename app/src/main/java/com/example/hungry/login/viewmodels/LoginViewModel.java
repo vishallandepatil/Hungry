@@ -68,7 +68,8 @@ public class LoginViewModel extends ViewModel {
     }
     public void onSelectGender(AdapterView<?> parent, View view, int pos, long id)
     {
-        selectGenderPosition=pos;    }
+        selectGenderPosition=pos;
+    }
 
 
 

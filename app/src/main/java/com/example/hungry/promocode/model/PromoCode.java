@@ -31,8 +31,8 @@ public class PromoCode {
     @SerializedName("discription")
     public String discription;
 
-    @SerializedName("maxQty")
-    public int maxQty;
+    @SerializedName("maxTotal")
+    public int maxTotal;
     @SerializedName("promoCodeId")
     public int promoCodeId;
     @SerializedName("code")

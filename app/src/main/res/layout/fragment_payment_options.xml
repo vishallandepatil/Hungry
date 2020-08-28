@@ -1,0 +1,217 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:layout_height="match_parent">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleTextColor="@color/colorPrimaryDark"
+        android:layout_alignParentStart="true"
+        app:title="Payment Options"
+        android:elevation="@dimen/dp_5"
+        app:navigationIcon='@drawable/ic_menu_black_24dp'
+        android:background="@color/colorPrimary" >
+
+
+    </androidx.appcompat.widget.Toolbar>
+<TextView
+    android:layout_gravity="center_horizontal"
+    android:layout_width="match_parent"
+    android:text="Pay an Amount"
+    android:padding="@dimen/dp_10"
+    android:gravity="center_horizontal"
+    android:layout_height="wrap_content"/>
+    <TextView
+        android:layout_gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:text="Rs 100"
+        android:textSize="@dimen/dp_30"
+        android:textStyle="bold"
+        android:gravity="center_horizontal"
+        android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:text="Through"
+            android:padding="@dimen/dp_10"
+            android:gravity="center_horizontal"
+            android:layout_height="wrap_content"/>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/debitcard"
+            android:layout_width="match_parent"
+            android:elevation="@dimen/dp_5"
+            android:layout_margin="@dimen/dp_5"
+            android:layout_above="@+id/layouttotal"
+
+            app:cardBackgroundColor="@color/white"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/icon"
+                    android:src="@drawable/ic_baseline_credit_card_24"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_centerVertical="true"
+                    android:layout_height="@dimen/dp_30"/>
+                <TextView
+                    android:layout_toRightOf="@+id/icon"
+                    android:layout_width="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_centerVertical="true"
+                    android:padding="@dimen/dp_10"
+                    android:layout_height="wrap_content"
+                    android:text="Debit Card"
+                    android:textStyle="bold"
+                    />
+
+            </RelativeLayout>
+
+
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/creditcard"
+            android:layout_width="match_parent"
+            android:elevation="@dimen/dp_5"
+            android:layout_margin="@dimen/dp_5"
+            android:layout_above="@+id/layouttotal"
+
+            app:cardBackgroundColor="@color/white"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/icon2"
+                    android:src="@drawable/ic_baseline_credit_card_24"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_centerVertical="true"
+                    android:layout_height="@dimen/dp_30"/>
+                <TextView
+                    android:layout_toRightOf="@+id/icon2"
+                    android:layout_width="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_centerVertical="true"
+                    android:padding="@dimen/dp_10"
+                    android:layout_height="wrap_content"
+                    android:text="Credit Card"
+                    android:textStyle="bold"
+                    />
+
+            </RelativeLayout>
+
+
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/upi"
+            android:layout_width="match_parent"
+            android:elevation="@dimen/dp_5"
+            android:layout_margin="@dimen/dp_5"
+            android:layout_above="@+id/layouttotal"
+
+            app:cardBackgroundColor="@color/white"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/icon3"
+                    android:src="@drawable/ic_baseline_phone_iphone_24"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_centerVertical="true"
+                    android:layout_height="@dimen/dp_30"/>
+                <TextView
+                    android:layout_toRightOf="@+id/icon3"
+                    android:layout_width="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_centerVertical="true"
+                    android:padding="@dimen/dp_10"
+                    android:layout_height="wrap_content"
+                    android:text="BHIM/ UPI"
+                    android:textStyle="bold"
+                    />
+
+            </RelativeLayout>
+
+
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/netbancking"
+            android:layout_width="match_parent"
+            android:elevation="@dimen/dp_5"
+            android:layout_margin="@dimen/dp_5"
+            android:layout_above="@+id/layouttotal"
+
+            app:cardBackgroundColor="@color/white"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/icon4"
+                    android:src="@drawable/ic_baseline_computer_24"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_centerVertical="true"
+                    android:layout_height="@dimen/dp_30"/>
+                <TextView
+                    android:layout_toRightOf="@+id/icon4"
+                    android:layout_width="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_centerVertical="true"
+                    android:padding="@dimen/dp_10"
+                    android:layout_height="wrap_content"
+                    android:text="Net Bancking"
+                    android:textStyle="bold"
+                    />
+
+            </RelativeLayout>
+
+
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cash"
+            android:layout_width="match_parent"
+            android:elevation="@dimen/dp_5"
+            android:layout_margin="@dimen/dp_5"
+            android:layout_above="@+id/layouttotal"
+
+            app:cardBackgroundColor="@color/white"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/icon6"
+                    android:src="@drawable/ic_baseline_attach_money_24"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_centerVertical="true"
+                    android:layout_height="@dimen/dp_30"/>
+                <TextView
+                    android:layout_toRightOf="@+id/icon6"
+                    android:layout_width="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_centerVertical="true"
+                    android:padding="@dimen/dp_10"
+                    android:layout_height="wrap_content"
+                    android:text="Cash on Delivery"
+                    android:textStyle="bold"
+                    />
+
+            </RelativeLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+</LinearLayout>
+</layout>

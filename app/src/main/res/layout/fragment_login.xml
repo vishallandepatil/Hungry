@@ -142,7 +142,6 @@
                             android:layout_width="match_parent"
                             android:entries="@array/genders"
                             android:onItemSelected="@{(parent,view,pos,id)->LoginViewModel.onSelectGender(parent,view,pos,id)}"
-
                             android:layout_height="43dp"
                             android:padding="5dp" />
 

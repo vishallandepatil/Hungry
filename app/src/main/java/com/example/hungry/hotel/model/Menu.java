@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.hungry.BR;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
@@ -20,12 +21,14 @@ public class Menu  extends BaseObservable {
     public int menuId;
     @SerializedName("NAME")
     public String name;
+    @Expose(serialize = true)
     @SerializedName("AMOUNT")
     public Double amount;
     @SerializedName("TYPE")
     public String type;
     @SerializedName("QUNTITY")
     public String qnty;
+
     @SerializedName("DESCRIPTION")
     public String description;
     @SerializedName("CATEGORY")
@@ -56,6 +59,7 @@ public class Menu  extends BaseObservable {
 
     public int qtyOrder=1;
     public Double total;
+
     @BindingAdapter("imageUrl")
     public static void loadImage(ImageView view, String url) {
         Glide.with(view.getContext()).load(url).into(view);

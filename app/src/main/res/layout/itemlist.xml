@@ -12,18 +12,20 @@
         android:weightSum="2">
 
         <TextView
+            android:id="@+id/menuname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textSize="@dimen/dp_12"
-            android:text="Shev Bhaji(1 Bhaji)"/>
+            android:hint="Shev Bhaji(1 Bhaji)"/>
 
         <TextView
+            android:id="@+id/price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textSize="@dimen/dp_12"
-            android:text="Rs. 200"/>
+            android:hint="Rs. 200"/>
 
     </LinearLayout>
 </LinearLayout>

@@ -15,28 +15,33 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/dp_20"
-        android:padding="@dimen/dp_5"
-        android:fontFamily="@font/ptserif_regular"
-        android:text="@{promocode.discription}"/>
-    <TextView
+        android:id="@+id/code"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="@dimen/dp_20"
         android:padding="@dimen/dp_5"
         android:textColor="@color/colorPrimaryDark"
         android:fontFamily="@font/ptserif_bold"
+        android:text="@{promocode.code}"/>
+    <TextView
+        android:id="@+id/description_textbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/dp_15"
+        android:padding="@dimen/dp_5"
+        android:fontFamily="@font/ptserif_regular"
         android:text="@{promocode.discription}"/>
     <TextView
+        android:id="@+id/enddate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="@dimen/dp_20"
         android:fontFamily="@font/ptserif_regular"
         android:padding="@dimen/dp_5"
-        android:text="Expires 31 jan 2020"/>
+        app:bindServerDate="@{promocode.endDate}"
+      />
     <Button
         android:id="@+id/btn_add_to_card"
         android:layout_width="wrap_content"
@@ -45,9 +50,9 @@
         android:layout_marginTop="@dimen/dp_10"
         android:paddingLeft="@dimen/dp_20"
         android:paddingRight="20dp"
-        android:text="Applied"
+        android:text="Apply"
         android:textAllCaps="false"
-        android:background="@drawable/circle_background"
+        android:background="@drawable/addtocart_border"
         android:textColor="@color/white"
         android:textSize="@dimen/dp_12"
         />

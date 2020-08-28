@@ -71,7 +71,7 @@
                         android:src="@drawable/ic_shopping_cart_black_24dp" />
 
                     <TextView
-                        android:id="@+id/ibcartCount"
+                        android:id="@+id/ibcartCount1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -164,15 +164,44 @@
                 android:textColor="@color/white" />
 
         </LinearLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floating_action_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/dp_40"
+            android:layout_above="@+id/bottom"
+            android:layout_alignParentRight="true"
+            android:layout_margin="16dp"
+            android:tint="@color/white"
+            app:srcCompat="@drawable/ic_shopping_cart_black_24dp">
 
+        </com.google.android.material.floatingactionbutton.FloatingActionButton>
+        <TextView
+            android:elevation="@dimen/dp_20"
+            android:id="@+id/ibcartCount"
+            android:layout_marginBottom="-37dp"
+            android:layout_marginRight="27dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:layout_above="@+id/floating_action_button"
+            android:text="0"
+            android:background="@drawable/txt_round_shape"
+            android:textColor="@color/colorAccent"
+            android:backgroundTint="@color/white"
 
+            android:textSize="10dp"
+            android:textStyle="bold"
+            android:visibility="visible" />
         <LinearLayout
-            android:elevation="@dimen/dp_10"
+            android:elevation="0dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@+id/bottom"
             android:layout_below="@id/toolbar"
             android:id="@+id/data"
+
             android:layout_margin="@dimen/dp_2"
             android:orientation="vertical"
             android:visibility="@{HotelDetails.isShown?View.VISIBLE:View.GONE}">

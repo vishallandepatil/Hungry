@@ -1,28 +1,27 @@
 package com.example.hungry.address;
 
-import com.example.hungry.hotel.model.HotelResult;
-import com.example.hungry.hotel.model.MenuResult;
-import com.example.hungry.login.model.CityResult;
-import com.example.hungry.login.model.ResultVerifyOTP;
-
+import com.example.hungry.address.model.AddressResult;
 import retrofit2.Call;
 import retrofit2.http.Field;
-import retrofit2.http.GET;
-import retrofit2.http.PUT;
-import retrofit2.http.Query;
+import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.POST;
 
 public interface AddressApi {
-    @PUT("/index.php/api/Order/addDeliveryAddress")
-    Call<ResultVerifyOTP>  addAdress(
+
+    @FormUrlEncoded
+    @POST("/index.php/api/Order/addDeliveryAddress")
+    Call<AddressResult>  addAdress(
             @Field("api_key") String api_key,
-            @Field("LANG") String mobile,
-            @Field("LAT") String otp,
+            @Field("LANG") String lang,
+            @Field("LAT") String lat,
             @Field("LINE1") String line1,
             @Field("LINE2") String line2,
             @Field("PIN_CODE") String pincode,
-            @Field("CI_MA_ID") String client_id
-
+            @Field("CI_MA_ID") String client_id,
+            @Field("CITY_ID") String CITY_ID
     );
 
 }
+
+
 

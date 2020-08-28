@@ -7,6 +7,7 @@ import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 
 public interface Registration {
     @FormUrlEncoded
@@ -28,4 +29,14 @@ public interface Registration {
 
 
     );
+
+    @FormUrlEncoded
+    @PUT("/index.php/api/User/update")
+    Call<ResultVerifyOTP>  update(
+            @Field("api_key") String api_key,
+            @Field("CM_MOBILE") String mobile,
+            @Field("CITY_MASTER_ID") String city_it
+
+    );
+
 }

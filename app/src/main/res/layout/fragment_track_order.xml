@@ -1,0 +1,304 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+    <variable
+        name="TrackOrderViewModel"
+        type="com.example.hungry.myorder.viewModel.TrackOrderViewModel" />
+    </data>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:layout_height="match_parent">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:titleTextColor="@color/colorPrimaryDark"
+            android:layout_alignParentStart="true"
+            app:title="Track Order"
+            android:elevation="@dimen/dp_5"
+            app:navigationIcon='@drawable/ic_menu_black_24dp'
+            android:background="@color/colorPrimary" >
+
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <RelativeLayout
+            android:id="@+id/estimaedtimelayout"
+            android:layout_below="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:padding="@dimen/dp_10"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/estimateddate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/ptserif_bold"
+                android:textColor="@color/black"
+                app:bindArivalTime="@{TrackOrderViewModel.order}"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:id="@+id/statustimemessage"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:paddingRight="@dimen/dp_10"
+                android:textColor="@color/black"
+
+                android:layout_height="wrap_content"
+
+                android:fontFamily="@font/ptserif_bold"
+                android:textStyle="bold"
+                />
+        </RelativeLayout>
+        <LinearLayout
+            android:id="@+id/stateprogresslayout"
+            android:weightSum="5"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:layout_marginRight="@dimen/dp_20"
+            android:layout_below="@+id/estimaedtimelayout"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <ProgressBar
+                android:id="@+id/progressBar5"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="50dp"
+                android:padding="@dimen/dp_2"
+                android:minWidth="250dp"
+                android:layout_weight="1"
+
+                android:indeterminate="false"
+                android:max="100"
+                android:progress='@{TrackOrderViewModel.openProgress}'/>
+            <ProgressBar
+                android:id="@+id/progressBar1"
+                android:padding="@dimen/dp_2"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="50dp"
+                android:layout_weight="1"
+                android:minWidth="250dp"
+                android:indeterminate="false"
+                android:max="100"
+                android:progress='@{TrackOrderViewModel.acceptedProgress}'/>
+            <ProgressBar
+                android:id="@+id/progressBar2"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="wrap_content"
+                android:padding="@dimen/dp_2"
+                android:layout_height="wrap_content"
+                android:minHeight="50dp"
+                android:minWidth="250dp"
+                android:indeterminate="false"
+                android:layout_weight="1"
+                android:progress='@{TrackOrderViewModel.readyProgress}'
+                android:max="100" />
+            <ProgressBar
+                android:id="@+id/progressBar3"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="50dp"
+                android:minWidth="250dp"
+                android:padding="@dimen/dp_2"
+                android:indeterminate="false"
+                android:max="100"
+                android:layout_weight="1"
+
+                android:progress='@{TrackOrderViewModel.dispatchedProgress}'/>
+            <ProgressBar
+                android:id="@+id/progressBar4"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="50dp"
+                android:padding="@dimen/dp_2"
+                android:minWidth="250dp"
+                android:layout_weight="1"
+
+                android:indeterminate="false"
+                android:max="100"
+                android:progress='@{TrackOrderViewModel.diliveredProgress}' />
+
+        </LinearLayout>
+        <TextView
+            android:id="@+id/detaileddescription"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:text="confirming with hotel Prasad"
+            android:layout_width="wrap_content"
+            android:textColor="@color/black"
+            android:fontFamily="@font/ptserif_regular"
+            android:layout_below="@+id/stateprogresslayout"
+            android:layout_height="wrap_content"/>
+
+        <View
+            android:layout_marginBottom="@dimen/dp_5"
+            android:layout_above="@+id/bottom"
+            android:background="@color/gray_btn_bg_color"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_2"/>
+        <RelativeLayout
+            android:id="@+id/bottom"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/bottomlaybel"
+                android:layout_marginLeft="@dimen/dp_20"
+                android:text="Billing Details"
+                android:layout_width="wrap_content"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:fontFamily="@font/ptserif_regular"
+                android:layout_height="wrap_content"/>
+            <LinearLayout
+                android:id="@+id/lltotat"
+                android:layout_below="@+id/bottomlaybel"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/dp_10"
+                android:padding="@dimen/dp_5"
+                android:weightSum="4"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:text="Item Total Amount"
+                    android:layout_width="match_parent"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/ptserif_regular"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_weight="3"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:text='@{"Rs. "+TrackOrderViewModel.order.netTotal}'
+                    android:layout_width="match_parent"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/ptserif_regular"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/lldeiveryfee"
+                android:layout_below="@+id/lltotat"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:padding="@dimen/dp_5"
+                android:weightSum="4"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:text="Delivery Fees"
+                    android:layout_width="match_parent"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/ptserif_regular"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_weight="3"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:text='@{"Rs."+TrackOrderViewModel.order.delivery_fees}'
+                    android:layout_width="match_parent"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/ptserif_regular"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/lltax"
+                android:layout_below="@+id/lldeiveryfee"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:padding="@dimen/dp_5"
+                android:weightSum="4"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:text="Tax"
+                    android:layout_width="match_parent"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/ptserif_regular"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_weight="3"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:text='@{"Rs. "+TrackOrderViewModel.order.tax}'
+                    android:layout_width="match_parent"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/ptserif_regular"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/lldiscount"
+                android:layout_below="@+id/lltax"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:padding="@dimen/dp_5"
+                android:weightSum="4"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:text="Discount"
+                    android:layout_width="match_parent"
+                    android:textColor="@color/DarkGreen"
+                    android:fontFamily="@font/ptserif_regular"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_weight="3"
+
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:text='@{"Rs. -"+TrackOrderViewModel.order.discount}'
+                    android:layout_width="match_parent"
+                    android:textColor="@color/DarkGreen"
+                    android:fontFamily="@font/ptserif_regular"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+            <View
+                android:id="@+id/lline"
+                android:layout_below="@+id/lldiscount"
+                android:background="@color/gray_btn_bg_color"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_2"/>
+
+            <LinearLayout
+                android:id="@+id/lltotal"
+                android:layout_below="@+id/lline"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:padding="@dimen/dp_5"
+                android:weightSum="4"
+                android:layout_marginBottom="@dimen/dp_20"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:text="Total Amount"
+                    android:layout_width="match_parent"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/ptserif_regular"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_weight="3"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:text='@{"Rs. "+TrackOrderViewModel.order.total}'
+                    android:textStyle="bold"
+                    android:layout_width="match_parent"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/ptserif_regular"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+</layout>

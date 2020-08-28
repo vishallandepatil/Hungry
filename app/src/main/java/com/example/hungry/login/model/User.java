@@ -2,7 +2,11 @@ package com.example.hungry.login.model;
 
 public class User {
 
-    int CM_ID,CM_MA_ID,COUNTRY_COUNTRY_MASTRE_ID,STATE_MASTER_ID,CITY_MASTER_ID;
+    int CM_ID;
+    String CM_MA_ID;
+    int COUNTRY_COUNTRY_MASTRE_ID;
+    int STATE_MASTER_ID;
+    int CITY_MASTER_ID;
 
     String CM_FIRST_NAME;
 
@@ -14,11 +18,11 @@ public class User {
         this.CM_ID = CM_ID;
     }
 
-    public int getCM_MA_ID() {
+    public String getCM_MA_ID() {
         return CM_MA_ID;
     }
 
-    public void setCM_MA_ID(int CM_MA_ID) {
+    public void setCM_MA_ID(String CM_MA_ID) {
         this.CM_MA_ID = CM_MA_ID;
     }
 

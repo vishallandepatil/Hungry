@@ -74,5 +74,7 @@ dependencies {
 // Lifecycle components
     implementation "android.arch.lifecycle:extensions:$life_versions"
     annotationProcessor "android.arch.lifecycle:compiler:$life_versions"
+    implementation 'com.github.f0ris.sweetalert:library:1.6.2'
+
 
 }

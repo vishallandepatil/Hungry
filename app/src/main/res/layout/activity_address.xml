@@ -5,19 +5,14 @@
 
     <data>
         <import type="android.view.View"/>
-        <import type="androidx.recyclerview.widget.LinearLayoutManager"/>
-        <variable
-            name="OrderSummaryViewModel"
-            type="com.example.hungry.ordersummary.viewmodel.OrderSummaryViewModel" />
-        <variable
-            name="Adapter"
-            type="com.example.hungry.ordersummary.adapter.OrderSummaryAdapter" />
+         <variable
+            name="AddressModel"
+            type="com.example.hungry.address.viewmodel.DeliveryAddessModel" />
     </data>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
-
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
@@ -38,7 +33,7 @@
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
             android:layout_height="400dp"
-            tools:layout="@layout/activity_address" />
+            />
         <ProgressBar
             android:id="@+id/progressBar1"
             android:layout_width="match_parent"
@@ -112,14 +107,27 @@
                 android:layout_height="wrap_content"
                 android:hint="House/Flat/Block No"
                 app:helperTextEnabled="true"
-                app:counterEnabled="true"
+                app:errorEnabled="true"
+
                 app:counterMaxLength="30">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
+                    android:text="@={AddressModel.line1}"
                     android:layout_height="wrap_content"/>
 
             </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:text="Please enter one line1 Adress"
+                android:visibility="@{AddressModel.isErrorShown ? View.VISIBLE : View.GONE}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="1dp"
+                android:textColor="@color/red"
+                android:layout_marginLeft="5dp"
+
+
+                />
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/addressline"
                 android:layout_width="match_parent"
@@ -131,18 +139,33 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
+                    android:text="@={AddressModel.line2}"
                     android:layout_height="wrap_content"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <TextView
+                android:text="Please enter one line2 Adress"
+                android:visibility="@{AddressModel.isErrorShown2 ? View.VISIBLE : View.GONE}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="1dp"
+                android:textColor="@color/red"
+                android:layout_marginLeft="5dp"
+
+
+                />
+
         </LinearLayout>
         <Button
+            android:id="@+id/saveaddres"
             android:layout_alignParentBottom="true"
             android:layout_height="50dp"
             app:cardBackgroundColor="@color/DarkGreen"
             android:layout_width="match_parent"
             android:layout_weight="1"
             android:layout_gravity="bottom"
+            android:onClick="@{(v) -> AddressModel.onClick(v)}"
             android:background="@color/DarkGreen"
             android:text="Confirm"
             android:textColor="@color/white"
@@ -151,4 +174,5 @@
 
 
     </RelativeLayout>
+
 </layout>

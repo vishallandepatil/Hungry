@@ -25,12 +25,14 @@ import com.example.hungry.hotel.adapter.MenuAdapter;
 import com.example.hungry.hotel.model.HotelModel;
 import com.example.hungry.util.GridSpacingItemDecoration;
 
+import java.util.ArrayList;
+
 
 public class HotelDetail extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     HotelModel hotelModel;
     HotelDetailViewModel hotelDetailViewModel;
-
+    FragmentHotelDetailBinding binding;
     public HotelDetail() {
         // Required empty public constructor
     }
@@ -55,10 +57,31 @@ public class HotelDetail extends Fragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+
+            try {
+                String size = ((HomePage) getActivity()).cart.size()+"";
+                binding.ibcartCount.setText(size+"");
+                binding.itemcount.setText("Items: "+((HomePage) getActivity()).cart.size());
+                double total=0;
+                for(Menu menu : ((HomePage) getActivity()).cart){
+                    total+= menu.amount;
+                }
+                binding.total.setText("Total: Rs. "+total);
+            } catch (Exception e){
+
+            }
+
+
+
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        final FragmentHotelDetailBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_hotel_detail, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_hotel_detail, container, false);
         hotelDetailViewModel = ViewModelProviders.of(this).get(HotelDetailViewModel.class);
         hotelDetailViewModel.setMutaibleHotelModel(hotelModel);
         binding.setLifecycleOwner(this);
@@ -93,6 +116,19 @@ public class HotelDetail extends Fragment {
         String size = ((HomePage) getActivity()).cart.size()+"";
         binding.ibcartCount.setText(size+"");
         binding.ibcartCount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (((HomePage) getActivity()).cart.size() > 0) {
+                    OrderSummary fragment = new OrderSummary();
+                    getActivity().getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.frame_container, fragment).addToBackStack(null)
+                            .commit();
+                }
+            }
+        });
+        binding.ibcartCount1.setText(size+"");
+        binding.floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (((HomePage) getActivity()).cart.size() > 0) {

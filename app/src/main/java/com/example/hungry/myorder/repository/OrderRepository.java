@@ -1,5 +1,7 @@
 package com.example.hungry.myorder.repository;
 
+import com.example.hungry.address.AddressApi;
+import com.example.hungry.address.model.AddressResult;
 import com.example.hungry.myorder.api.Order;
 import com.example.hungry.myorder.model.OrderResult;
 import com.example.hungry.retrofitsetting.RetrofitClientInstance;
@@ -8,6 +10,7 @@ import androidx.lifecycle.MutableLiveData;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.http.Field;
 
 public class OrderRepository {
     public MutableLiveData<OrderResult> getOrder(String hotel_id,String status,String client_id,String dlBoyId){
@@ -41,5 +44,69 @@ public class OrderRepository {
         return resultMutableLiveData;
 
     }
+    public MutableLiveData<OrderResult> createtOrder(String CM_MS_ID, String HOT_MS_ID,String DL_AD_MA_ID,String NET_TOTAL,String TAX,String TOTAL,String DISCOUNT, String items,String PAYMENT_STATUS,
+                                                     String PAY_METHOD,String discount_code,String deliveryFees){
+        Order orderRepository = RetrofitClientInstance.getRetrofitInstance().create(Order.class);
+        final MutableLiveData<OrderResult> resultMutableLiveData = new MutableLiveData<>();
+
+        Call<OrderResult> call = orderRepository.createOrder(RetrofitClientInstance.API_KEY,CM_MS_ID,HOT_MS_ID,DL_AD_MA_ID,NET_TOTAL,TAX,TOTAL,DISCOUNT,items,PAYMENT_STATUS,PAY_METHOD,discount_code,deliveryFees);
+        call.enqueue(new Callback<OrderResult>() {
+            @Override
+            public void onResponse(Call<OrderResult> call, Response<OrderResult> response) {
+                OrderResult data = response.body();
+                resultMutableLiveData.setValue(data);
+            }
+
+            @Override
+            public void onFailure(Call<OrderResult> call, Throwable t) {
+                OrderResult result =new OrderResult();
+                if(t.getLocalizedMessage().equalsIgnoreCase("Unable to resolve host \"hungryindia.co.in\": No address associated with hostname"))
+                {
+                    result.setMessage("Please Check Enternet Connection");
+
+                } else {
+                    result.setMessage(t.getLocalizedMessage());
+                }
+                resultMutableLiveData.setValue(result);
+            }
+        });
+        return resultMutableLiveData;
+
+    }
+
+
+
+
+    public MutableLiveData<OrderResult> UpdateOrder(String orderID, String rating, String feedback){
+        Order orderRepository = RetrofitClientInstance.getRetrofitInstance().create(Order.class);
+        final MutableLiveData<OrderResult> resultMutableLiveData = new MutableLiveData<>();
+
+        Call<OrderResult> call = orderRepository.updateOrder(RetrofitClientInstance.API_KEY,orderID,rating,feedback);
+        call.enqueue(new Callback<OrderResult>() {
+            @Override
+            public void onResponse(Call<OrderResult> call, Response<OrderResult> response) {
+                OrderResult data = response.body();
+                resultMutableLiveData.setValue(data);
+            }
+
+            @Override
+            public void onFailure(Call<OrderResult> call, Throwable t) {
+                OrderResult result =new OrderResult();
+                if(t.getLocalizedMessage().equalsIgnoreCase("Unable to resolve host \"hungryindia.co.in\": No address associated with hostname"))
+                {
+                    result.setMessage("Please Check Enternet Connection");
+
+                } else {
+                    result.setMessage(t.getLocalizedMessage());
+                }
+                resultMutableLiveData.setValue(result);
+            }
+        });
+        return resultMutableLiveData;
+
+    }
 
 }
+
+
+
