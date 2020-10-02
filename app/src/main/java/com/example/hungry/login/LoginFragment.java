@@ -64,6 +64,8 @@ public class LoginFragment extends Fragment {
 
     }
 
+    //HGFHGFHG
+
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

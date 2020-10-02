@@ -164,7 +164,20 @@ public class OrderSummaryViewModel extends ViewModel {
 
                             String jsonitem =jsonArray.toString();
                             String hotel = ((HomePage) view.getContext()).cart.get(0).hotelID;
-                            final MutableLiveData<OrderResult> orderResultMutableLiveData2=new OrderRepository().createtOrder(CM_MA_ID,hotel,addressResultMutableLiveData.getValue().result.get(0).ID,netTotal.getValue()+"",servicecharge.getValue()+"",netTotal.getValue()+deliveryFees.getValue()+servicecharge.getValue()-discount.getValue()+"",discount.getValue()+"",jsonitem,PAYMENT_STATUS_UNPAID,PAY_METHOD,promoCodeMutableLiveData.getValue()+"",deliveryFees.getValue()+   "");
+                            String addressid = addressResultMutableLiveData.getValue().result.get(0).ID;
+                            String netTotalStr = netTotal.getValue()+"";
+                            String tax =servicecharge.getValue()+"";
+                            Double deleveryfees = deliveryFees.getValue();
+                            Double nettoatalval= netTotal.getValue();
+                            Double servicechargeValue= servicecharge.getValue();
+                            Double discountValue= discount.getValue();
+
+                            String value= nettoatalval+deleveryfees+servicechargeValue-discountValue+"";
+                            String discountvalue = discount.getValue()+"";
+                            String promocodevalue = promoCodeMutableLiveData.getValue()+"";
+
+                            final MutableLiveData<OrderResult> orderResultMutableLiveData2=new OrderRepository().createtOrder(CM_MA_ID,hotel,addressid,netTotalStr,tax,value,discountvalue,jsonitem,PAYMENT_STATUS_UNPAID,PAY_METHOD,promocodevalue,   deleveryfees
+                        +"");
                             orderResultMutableLiveData2.observeForever(new Observer<OrderResult>() {
                                 @Override
                                 public void onChanged(OrderResult orderResult) {
