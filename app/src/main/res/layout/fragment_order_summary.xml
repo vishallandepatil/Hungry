@@ -3,21 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="com.hungry.customer.util.Curruncy"></import>
         <import type="android.view.View"/>
         <import type="androidx.recyclerview.widget.LinearLayoutManager"/>
     <variable
         name="OrderSummaryViewModel"
-        type="com.example.hungry.ordersummary.viewmodel.OrderSummaryViewModel" />
+        type="com.hungry.customer.ordersummary.viewmodel.OrderSummaryViewModel" />
     <variable
         name="Adapter"
-        type="com.example.hungry.ordersummary.adapter.OrderSummaryAdapter" />
+        type="com.hungry.customer.ordersummary.adapter.OrderSummaryAdapter" />
     </data>
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     >
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -26,7 +25,6 @@
         android:layout_alignParentStart="true"
         app:title="Order Summary"
         android:elevation="@dimen/dp_5"
-        app:navigationIcon='@drawable/ic_menu_black_24dp'
         android:background="@color/colorPrimary" >
 
 
@@ -144,8 +142,18 @@
         android:layout_height="wrap_content"
         xmlns:android="http://schemas.android.com/apk/res/android">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+        <EditText
 
-
+            android:text="@={OrderSummaryViewModel.suggestionforhpotel}"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/dp_5"
+            android:hint="Suggestion for Hotel"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -158,6 +166,7 @@
                 android:orientation="horizontal"
                 android:weightSum="2"
                 >
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -222,7 +231,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="1.3"
                     android:orientation="vertical">
 
 
@@ -230,7 +239,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/dp_12"
-                        android:text='@{"Rs. "+OrderSummaryViewModel.netTotal.doubleValue()}'
+                        android:text='@{""+Curruncy.getCurruncy(OrderSummaryViewModel.netTotal.doubleValue()+"")}'
                         android:textColor="@color/black" />
 
 
@@ -238,7 +247,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text='@{"Rs. "+OrderSummaryViewModel.deliveryFees.doubleValue()}'
+                        android:text='@{""+Curruncy.getCurruncy(OrderSummaryViewModel.deliveryFees.doubleValue()+"")}'
                         android:textSize="@dimen/dp_12"
                         android:textColor="@color/black" />
 
@@ -248,14 +257,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text='@{"Rs. "+OrderSummaryViewModel.servicecharge.doubleValue()}'
+                        android:text='@{Curruncy.getCurruncy(OrderSummaryViewModel.servicecharge.doubleValue()+"")}'
                         android:textSize="@dimen/dp_12"
                         android:textColor="@color/black" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text='@{"Rs. -"+OrderSummaryViewModel.discount.doubleValue()}'
+                        android:text='@{Curruncy.getDiscountCurruncy(OrderSummaryViewModel.discount.doubleValue()+"")}'
                         android:textSize="@dimen/dp_12"
                         android:textColor="@color/darkGreen" />
                     <View
@@ -266,7 +275,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text='@{"Rs. "+(OrderSummaryViewModel.netTotal.doubleValue()+OrderSummaryViewModel.deliveryFees.doubleValue()+OrderSummaryViewModel.servicecharge.doubleValue()-OrderSummaryViewModel.discount.doubleValue())}'
+                        android:text='@{Curruncy.getCurruncy(""+(OrderSummaryViewModel.netTotal.doubleValue()+OrderSummaryViewModel.deliveryFees.doubleValue()+OrderSummaryViewModel.servicecharge.doubleValue()-OrderSummaryViewModel.discount.doubleValue()))}'
                         android:layout_weight="1"
                         android:textColor="@color/black"
                         android:textStyle="bold"
@@ -280,6 +289,7 @@
 
 
 
+        </LinearLayout>
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>

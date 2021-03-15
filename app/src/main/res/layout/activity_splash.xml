@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent"
+    tools:context=".welcome.SplashActivity">
+    <RelativeLayout
+        android:id="@+id/food_img"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <ImageView
+
+            android:id="@+id/top"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/top" />
+        <ImageView
+
+            android:id="@+id/bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="250dp"
+            android:layout_alignParentBottom="true"
+            android:scaleType="fitStart"
+            android:visibility="visible"
+            android:layout_alignParentLeft="true"
+            android:src="@mipmap/bottom" />
+
+        <TextView
+            android:id="@+id/tvUpdateMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:visibility="gone"
+            android:layout_below="@+id/tvUpdateTitle"
+            android:text="@string/please_update_the_app"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:textColor="@color/colorPrimaryDark" />
+        <TextView
+            android:layout_below="@+id/middle"
+            android:id="@+id/tvUpdateTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:visibility="gone"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="@string/a_new_version_is_now_available"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold" />
+        <Button
+            android:layout_below="@+id/tvUpdateMessage"
+            android:id="@+id/btnUpdateApp"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:visibility="gone"
+            android:background="@drawable/button_background"
+            android:text="Update now"
+            android:textAllCaps="true"
+            android:textColor="@color/colorPrimary" />
+        <ImageView
+
+            android:id="@+id/middle"
+            android:layout_width="250dp"
+            android:layout_height="240dp"
+            android:layout_centerHorizontal="true"
+            android:scaleType="centerInside"
+            android:layout_below="@+id/top"
+            android:src="@mipmap/icon4" />
+    </RelativeLayout>
+
+    </RelativeLayout>

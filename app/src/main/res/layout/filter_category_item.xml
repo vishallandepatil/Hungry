@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View"></import>
+
+        <variable
+            name="menu"
+            type="com.hungry.customer.hotel.model.Category" />
+    </data>
+
+        <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+
+        android:background="@drawable/border_filter"
+        android:layout_margin="@dimen/dp_5"
+
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:paddingLeft="@dimen/dp_20"
+            android:paddingRight="@dimen/dp_20"
+            android:paddingTop="@dimen/dp_10"
+            android:paddingBottom="@dimen/dp_10"
+            android:text="@{menu.Name}"
+            android:textColor="@color/darkGray"
+            android:textStyle="normal"
+            android:textSize="@dimen/dp_15"
+            />
+    </LinearLayout>
+
+</layout>

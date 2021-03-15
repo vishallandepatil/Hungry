@@ -7,10 +7,10 @@
         <import type="androidx.recyclerview.widget.LinearLayoutManager"/>
         <variable
             name="promocodemodel"
-            type="com.example.hungry.promocode.viewmodel.PromocodeViewModel" />
+            type="com.hungry.customer.promocode.viewmodel.PromocodeViewModel" />
         <variable
             name="adapter"
-            type="com.example.hungry.promocode.adapters.PromoCodeAdapter" />
+            type="com.hungry.customer.promocode.adapters.PromoCodeAdapter" />
 
     </data>
 <LinearLayout
@@ -27,7 +27,7 @@
         android:layout_alignParentStart="true"
         app:title="Promocodes"
         android:elevation="@dimen/dp_5"
-        app:navigationIcon='@drawable/ic_menu_black_24dp'
+        app:navigationIcon='@drawable/ic_keyboard_backspace_black_24dp'
         android:background="@color/colorPrimary" >
 
 

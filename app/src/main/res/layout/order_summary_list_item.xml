@@ -3,10 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
     <import type="android.view.View"/>
-    <import type="androidx.recyclerview.widget.LinearLayoutManager"/>
+    <import type="com.hungry.customer.util.Curruncy"></import>
+
+        <import type="androidx.recyclerview.widget.LinearLayoutManager"/>
         <variable
             name="menu"
-            type="com.example.hungry.hotel.model.Menu" />
+            type="com.hungry.customer.hotel.model.Menu" />
     </data>
 <androidx.cardview.widget.CardView android:layout_width="match_parent"
     android:elevation="@dimen/dp_5"
@@ -38,9 +40,10 @@
 
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_toLeftOf="@+id/remove"
             android:layout_marginTop="@dimen/dp_5"
             android:layout_toRightOf="@+id/food_img"
             android:orientation="vertical">
@@ -49,9 +52,9 @@
                 android:id="@+id/home_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_5"
                 android:layout_marginBottom="@dimen/dp_2"
                 android:text="@{menu.name}"
-                android:layout_marginLeft="@dimen/dp_5"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="@dimen/dp_12"
                 android:textStyle="bold" />
@@ -67,7 +70,7 @@
                 android:textSize="@dimen/dp_12" />
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <ImageButton
                     android:layout_width="20dp"
@@ -78,7 +81,7 @@
                     android:background="@drawable/ic_remove_24dp"/>
 
             <TextView
-                android:id="@+id/address"
+                android:id="@+id/qnt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/border"
@@ -100,6 +103,17 @@
                     android:onClick="@{(v) -> menu.onAddQntity(v)}"
                     android:layout_margin="@dimen/dp_5"
                     android:background="@drawable/ic_add"/>
+                <TextView
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_toLeftOf="@+id/id_date_time"
+                    android:layout_marginRight="@dimen/dp_5"
+                    android:padding="@dimen/dp_5"
+                    android:textColor="@color/black"
+                    android:text='@{""+Curruncy.getCurruncy(menu.amount+"")}'
+                    android:textSize="@dimen/dp_10" />
             </LinearLayout>
 
         </LinearLayout>
@@ -153,7 +167,7 @@
             android:layout_alignParentRight="true"
             android:layout_below="@+id/remove"
             android:layout_gravity="bottom"
-            android:text='@{"Rs. "+menu.total}'
+            android:text='@{""+Curruncy.getCurruncy(menu.total+"")}'
             android:layout_marginRight="@dimen/dp_5"
             android:padding="@dimen/dp_5"
             android:textStyle="bold"

@@ -6,7 +6,7 @@
         <import type="android.view.View"/>
         <variable
             name="LoginViewModel"
-            type="com.example.hungry.login.viewmodels.LoginViewModel" />
+            type="com.hungry.customer.login.viewmodels.LoginViewModel" />
 
 
     </data>
@@ -25,7 +25,7 @@
             android:layout_gravity="center_horizontal"
 
 
-            android:src="@drawable/ic_login" />
+            android:src="@mipmap/icon2" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cvLogin"
@@ -89,7 +89,6 @@
 
                     <EditText
                         android:onTextChanged="@{LoginViewModel::onOTPChanged}"
-
                         android:id="@+id/etOtp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -124,7 +123,7 @@
                         android:inputType="text"
                         android:padding="10dp"
                         android:visibility="@{LoginViewModel.isRegistration?View.VISIBLE:View.GONE}"
-                        android:maxLength="6"
+
                         android:singleLine="true"
                         android:text="@={LoginViewModel.name}"
                         android:textColor="@color/colorPrimaryDark"

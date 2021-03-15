@@ -1,17 +1,17 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
-apply plugin: 'io.fabric'
+apply plugin: 'com.google.firebase.crashlytics'
 apply plugin: 'com.google.firebase.firebase-perf'
 
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
     defaultConfig {
-        applicationId "com.example.hungry"
+        applicationId "com.hungry.customer"
         minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        targetSdkVersion 30
+        versionCode 6
+        versionName "2.0.2"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
 
@@ -25,56 +25,67 @@ android {
     dataBinding {
         enabled = true
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
 
 
-    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'com.google.android.material:material:1.2.1'
 //page slide indicator dependancy
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'de.hdodenhof:circleimageview:3.0.1'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 
-    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
-    implementation 'com.google.firebase:firebase-analytics:17.2.1'
-    implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
-    implementation 'com.google.firebase:firebase-perf:19.0.4'
+    implementation 'com.google.firebase:firebase-perf:19.0.9'
+// Add the Firebase Crashlytics SDK.
+    implementation 'com.google.firebase:firebase-crashlytics:17.2.2'
 
+    // Recommended: Add the Google Analytics SDK.
+    implementation 'com.google.firebase:firebase-analytics'
 
     // glide image library
-    implementation 'com.github.bumptech.glide:glide:3.8.0'
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
 
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
-    implementation 'com.google.android.gms:play-services-location:17.0.0'
+    implementation 'com.google.android.gms:play-services-location:17.1.0'
     implementation 'com.google.android.gms:play-services-gcm:17.0.0'
-    implementation 'com.google.android.gms:play-services-base:17.1.0'
-    implementation 'com.google.android.gms:play-services-basement:17.1.1'
+    implementation 'com.google.android.gms:play-services-base:17.5.0'
+    implementation 'com.google.android.gms:play-services-basement:17.5.0'
 
     implementation 'com.google.maps.android:android-maps-utils-sdk-v3-compat:0.1'
 
 
+    implementation 'com.google.firebase:firebase-messaging'
 
 
 
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-    testImplementation 'junit:junit:4.12'
+    implementation 'androidx.work:work-runtime:2.4.0'
+    implementation 'org.jetbrains:annotations:15.0'
+    testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
 
-    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     def life_versions = "1.1.1"
 
 // Lifecycle components
     implementation "android.arch.lifecycle:extensions:$life_versions"
     annotationProcessor "android.arch.lifecycle:compiler:$life_versions"
     implementation 'com.github.f0ris.sweetalert:library:1.6.2'
+    implementation platform('com.google.firebase:firebase-bom:26.0.0')
+
 
 
 }

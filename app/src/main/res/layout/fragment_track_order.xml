@@ -1,15 +1,18 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
+        <import type="com.hungry.customer.util.Curruncy"></import>
     <variable
         name="TrackOrderViewModel"
-        type="com.example.hungry.myorder.viewModel.TrackOrderViewModel" />
+        type="com.hungry.customer.myorder.viewModel.TrackOrderViewModel" />
     </data>
     <RelativeLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:background="@color/white"
         android:layout_height="match_parent">
+<!--        app:navigationIcon='@drawable/ic_menu_black_24dp'-->
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
@@ -18,15 +21,23 @@
             android:layout_alignParentStart="true"
             app:title="Track Order"
             android:elevation="@dimen/dp_5"
-            app:navigationIcon='@drawable/ic_menu_black_24dp'
             android:background="@color/colorPrimary" >
 
 
         </androidx.appcompat.widget.Toolbar>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
 
+
+        android:background="@color/white"
+        android:layout_height="wrap_content">
         <RelativeLayout
             android:id="@+id/estimaedtimelayout"
-            android:layout_below="@+id/toolbar"
             android:layout_width="match_parent"
             android:orientation="horizontal"
             android:padding="@dimen/dp_10"
@@ -136,8 +147,20 @@
             android:fontFamily="@font/ptserif_regular"
             android:layout_below="@+id/stateprogresslayout"
             android:layout_height="wrap_content"/>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_below="@+id/detaileddescription"
+            android:layout_above="@+id/view1"
+            android:layout_height="310dp"
+            android:scaleType="fitXY"
+            android:id="@+id/icon"
+            android:layout_margin="@dimen/dp_30"
+
+        />
+
 
         <View
+            android:id="@+id/view1"
             android:layout_marginBottom="@dimen/dp_5"
             android:layout_above="@+id/bottom"
             android:background="@color/gray_btn_bg_color"
@@ -146,6 +169,7 @@
         <RelativeLayout
             android:id="@+id/bottom"
             android:layout_alignParentBottom="true"
+            android:layout_marginTop="@dimen/dp_5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
@@ -177,7 +201,7 @@
                 <TextView
                     android:layout_weight="3"
                     android:layout_marginLeft="@dimen/dp_20"
-                    android:text='@{"Rs. "+TrackOrderViewModel.order.netTotal}'
+                    android:text='@{""+Curruncy.getCurruncy(TrackOrderViewModel.order.netTotal)}'
                     android:layout_width="match_parent"
                     android:textColor="@color/black"
                     android:fontFamily="@font/ptserif_regular"
@@ -203,7 +227,7 @@
                 <TextView
                     android:layout_weight="3"
                     android:layout_marginLeft="@dimen/dp_20"
-                    android:text='@{"Rs."+TrackOrderViewModel.order.delivery_fees}'
+                    android:text='@{""+Curruncy.getCurruncy(TrackOrderViewModel.order.delivery_fees)}'
                     android:layout_width="match_parent"
                     android:textColor="@color/black"
                     android:fontFamily="@font/ptserif_regular"
@@ -229,7 +253,7 @@
                 <TextView
                     android:layout_weight="3"
                     android:layout_marginLeft="@dimen/dp_20"
-                    android:text='@{"Rs. "+TrackOrderViewModel.order.tax}'
+                    android:text='@{""+Curruncy.getCurruncy(TrackOrderViewModel.order.tax)}'
                     android:layout_width="match_parent"
                     android:textColor="@color/black"
                     android:fontFamily="@font/ptserif_regular"
@@ -256,7 +280,7 @@
                     android:layout_weight="3"
 
                     android:layout_marginLeft="@dimen/dp_20"
-                    android:text='@{"Rs. -"+TrackOrderViewModel.order.discount}'
+                    android:text='@{""+Curruncy.getDiscountCurruncy(TrackOrderViewModel.order.discount)}'
                     android:layout_width="match_parent"
                     android:textColor="@color/DarkGreen"
                     android:fontFamily="@font/ptserif_regular"
@@ -291,7 +315,7 @@
                 <TextView
                     android:layout_weight="3"
                     android:layout_marginLeft="@dimen/dp_20"
-                    android:text='@{"Rs. "+TrackOrderViewModel.order.total}'
+                    android:text='@{""+Curruncy.getCurruncy(TrackOrderViewModel.order.total)}'
                     android:textStyle="bold"
                     android:layout_width="match_parent"
                     android:textColor="@color/black"
@@ -300,5 +324,7 @@
 
             </LinearLayout>
         </RelativeLayout>
+    </LinearLayout>
+    </ScrollView>
     </RelativeLayout>
 </layout>

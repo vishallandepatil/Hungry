@@ -28,7 +28,9 @@
     <string name="delivery_fees">Delivery Fees</string>
     <string name="tax">Standard Service Charge</string>
     <string name="discount">Discount</string>
-
+    <string name="a_new_version_is_now_available">A new version is now available</string>
+    <string name="please_update_the_app">Please update the app</string>
+    <string name="default_notification_channel_id">1262</string>
     <string-array name="genders">
         <item>Select Gender</item>
         <item>Male</item>

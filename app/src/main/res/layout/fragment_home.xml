@@ -6,7 +6,7 @@
         <import type="android.view.View"/>
         <variable
             name="homeViewModel"
-            type="com.example.hungry.hotel.viewmodels.HomeViewModel" />
+            type="com.hungry.customer.hotel.viewmodels.HomeViewModel" />
 
 
     </data>
@@ -17,24 +17,39 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical">
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:background="@color/colorPrimary"
-        android:elevation="@dimen/dp_5"
-        app:navigationIcon='@drawable/ic_menu_black_24dp'
-        app:title="Hungry"
-        app:titleTextColor="@color/colorPrimaryDark" >
+            <LinearLayout
+                android:layout_marginLeft="0dp"
+                android:background="@drawable/border"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp"
+                android:weightSum="10">
 
 
-    </androidx.appcompat.widget.Toolbar>
+                <SearchView
+                    android:id="@+id/simpleSearchView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:layout_weight="8"
+                    android:closeIcon="@drawable/ic_close_black_24dp"
+                    android:iconifiedByDefault="false"
+                    android:queryHint="Search for hotels"
+                    android:searchIcon="@drawable/ic_search_black_24dp" />
+
+                <ImageView
+                    android:id="@+id/filter"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="2"
+                    android:src="@drawable/filter"/>
+            </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:id="@+id/pagerparent"
         android:orientation="vertical">
 
         <androidx.viewpager.widget.ViewPager
@@ -44,45 +59,16 @@
             android:visibility="@{homeViewModel.sliderResultMutableLiveData.status==200?View.VISIBLE:View.GONE}"
              />
 
-
-
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:background="@drawable/border"
-        android:orientation="horizontal"
-        android:padding="8dp"
-        android:weightSum="10">
 
-
-        <SearchView
-            android:id="@+id/simpleSearchView"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:layout_weight="8"
-            android:closeIcon="@drawable/ic_close_black_24dp"
-            android:iconifiedByDefault="false"
-
-            android:queryHint="Search here"
-            android:searchIcon="@drawable/ic_search_black_24dp" />
-
-        <ImageView
-            android:id="@+id/filter"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_gravity="center"
-            android:layout_weight="2"
-            android:src="@drawable/filter"/>
-    </LinearLayout>
 
     <!-- TODO: Update blank fragment layout -->
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
+
         android:background="@color/grey"></View>
 
         <ProgressBar
@@ -90,15 +76,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="@{homeViewModel.isLoading.booleanValue()?View.VISIBLE:View.GONE}" />
-        <androidx.recyclerview.widget.RecyclerView
+       <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_line"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:color="?android:colorControlHighlight"
         android:fastScrollEnabled="true"
+           android:background="@color/lightgrey"
         android:gravity="start"
         android:verticalScrollbarPosition="right"
         android:visibility="@{homeViewModel.hotelResultMutableLiveData.status!=200?View.GONE:View.VISIBLE }"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_search_result"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fastScrollEnabled="true"
+            android:background="@color/lightgrey"
+            android:gravity="start"
+
+            android:verticalScrollbarPosition="right"
+            android:visibility="gone"/>
+
+
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/llNoRecord"
